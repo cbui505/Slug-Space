@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slug Space: Account Sign up</title>
+  </head>
+  <body>
+    <div class="container">
+    	<h1>Slug Space: New Account sign up</h1>
+    	<input id="email" type="email" placeholder="Email">
+    	<br>
+    	<br>
+    	<input id="password" type="password" placeholder="Password">
+    	<br>
+    	<br>
+    	<button id="signUp">
+    		Sign Up
+    	</button>
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script>
+    	
+    //configurations for firebase	
+	const config = {
+		apiKey: "AIzaSyAs-ICWUpN1XGavOMCUfXeNzV7RD_OZiLk",
+		authDomain: "slug-space.firebaseapp.com",
+		databaseURL: "https://slug-space.firebaseio.com/",
+		storageBucket: "gs://slug-space.appspot.com/"
+	}
+	//use above configurations
+	firebase.initializeApp(config);
+
+	//get reference to user input
+	const emailText = document.getElementById('email');
+	const passwordText = document.getElementById('password');
+	const signUp = document.getElementById('signUp');
+
+	//listen for press of sign of button
+	signUp.addEventListener('click', e => {
+		//get string values
+		const email = emailText.value;
+		const pass = passwordText.value;
+		//begin user verification
+		const auth = firebase.auth();
+		//create new user with the following fields
+		auth.createUserWithEmailAndPassword(email, pass)
+		//print message if successful
+  		.then(function(userRecord) {
+    		alert("ayy new account created successfully");
+    		console.log("Successfully created new user:", userRecord.uid);
+ 		 })
+  		//error message otherwise
+  		.catch(function(error) {
+   			 console.log("Error creating new user:", error);
+ 		 });
+	});
+
+	firebase.auth().onAuthStateChanged(firebaseUser => {
+		if(firebaseUser){
+			console.log(firebaseUser);
+		}else{
+			console.log("Not logged in yet");
+		}
+	});
+
+
+    </script>
+
+  </body>
+</html>
