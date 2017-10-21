@@ -1,0 +1,160 @@
+[debug] [2017-10-20T22:08:56.556Z] ----------------------------------------------------------------------
+[debug] [2017-10-20T22:08:56.556Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Christopher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions,hosting
+[debug] [2017-10-20T22:08:56.556Z] CLI Version:   3.13.1
+[debug] [2017-10-20T22:08:56.556Z] Platform:      win32
+[debug] [2017-10-20T22:08:56.556Z] Node Version:  v8.6.0
+[debug] [2017-10-20T22:08:56.556Z] Time:          Fri Oct 20 2017 15:08:56 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:08:56.556Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-20T22:08:56.650Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-20T22:08:56.650Z] > authorizing via signed-in user
+[debug] [2017-10-20T22:08:56.650Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-20T22:08:56.650Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/0icmIpaBchfONIeGHUNiPTku_pKwtgw3b9HFkugmVw4',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Oct 20 2017 15:08:56 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:08:56.868Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:08:56.915Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/slug-space  
+ Fri Oct 20 2017 15:08:56 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:08:57.556Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:08:57.556Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/slug-space/tokens  
+ Fri Oct 20 2017 15:08:57 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:08:57.893Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Christopher\Desktop\slug-space'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-10-20T22:09:05.060Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/slug-space  
+ Fri Oct 20 2017 15:09:05 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:09:05.060Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/slug-space/apiKeys  
+ Fri Oct 20 2017 15:09:05 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:09:05.060Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/slug-space  
+ Fri Oct 20 2017 15:09:05 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:09:05.982Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:09:05.982Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:09:05.998Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/367997600602/clients/_:getWebAppConfig  
+ Fri Oct 20 2017 15:09:05 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:09:06.029Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:09:06.670Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
+[info] +  functions: app: http://localhost:5001/slug-space/us-central1/app
+[debug] [2017-10-20T22:12:55.792Z] ----------------------------------------------------------------------
+[debug] [2017-10-20T22:12:55.792Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Christopher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions,hosting
+[debug] [2017-10-20T22:12:55.792Z] CLI Version:   3.13.1
+[debug] [2017-10-20T22:12:55.792Z] Platform:      win32
+[debug] [2017-10-20T22:12:55.792Z] Node Version:  v8.6.0
+[debug] [2017-10-20T22:12:55.792Z] Time:          Fri Oct 20 2017 15:12:55 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:12:55.792Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-20T22:12:55.808Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-20T22:12:55.808Z] > authorizing via signed-in user
+[debug] [2017-10-20T22:12:55.808Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/slug-space  
+ Fri Oct 20 2017 15:12:55 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:12:56.199Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:12:56.199Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/slug-space/tokens  
+ Fri Oct 20 2017 15:12:56 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:12:56.605Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Christopher\Desktop\slug-space'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-10-20T22:12:57.125Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/slug-space  
+ Fri Oct 20 2017 15:12:57 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:12:57.129Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/slug-space/apiKeys  
+ Fri Oct 20 2017 15:12:57 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:12:57.129Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/slug-space  
+ Fri Oct 20 2017 15:12:57 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:12:57.513Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:12:57.591Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:12:57.653Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-20T22:12:57.653Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/367997600602/clients/_:getWebAppConfig  
+ Fri Oct 20 2017 15:12:57 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-20T22:12:57.997Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
+[info] +  functions: app: http://localhost:5001/slug-space/us-central1/app
+[debug] [2017-10-21T21:35:08.590Z] ----------------------------------------------------------------------
+[debug] [2017-10-21T21:35:08.636Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Christopher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions,hosting
+[debug] [2017-10-21T21:35:08.636Z] CLI Version:   3.13.1
+[debug] [2017-10-21T21:35:08.636Z] Platform:      win32
+[debug] [2017-10-21T21:35:08.636Z] Node Version:  v8.6.0
+[debug] [2017-10-21T21:35:08.652Z] Time:          Sat Oct 21 2017 14:35:08 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:08.652Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-21T21:35:08.730Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-21T21:35:08.730Z] > authorizing via signed-in user
+[debug] [2017-10-21T21:35:08.730Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-21T21:35:08.730Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/0icmIpaBchfONIeGHUNiPTku_pKwtgw3b9HFkugmVw4',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Oct 21 2017 14:35:08 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:09.105Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:35:09.340Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/slug-space  
+ Sat Oct 21 2017 14:35:09 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:09.824Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:35:09.824Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/slug-space/tokens  
+ Sat Oct 21 2017 14:35:09 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:10.387Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Christopher\Desktop\slug-space'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-10-21T21:35:15.127Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/slug-space  
+ Sat Oct 21 2017 14:35:15 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:15.127Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/slug-space/apiKeys  
+ Sat Oct 21 2017 14:35:15 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:15.127Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/slug-space  
+ Sat Oct 21 2017 14:35:15 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:15.582Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:35:15.582Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:35:15.582Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/367997600602/clients/_:getWebAppConfig  
+ Sat Oct 21 2017 14:35:15 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:35:15.645Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:35:16.067Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
+[info] +  functions: app: http://localhost:5001/slug-space/us-central1/app
+[debug] [2017-10-21T21:37:23.034Z] ----------------------------------------------------------------------
+[debug] [2017-10-21T21:37:23.034Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Christopher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only functions,hosting
+[debug] [2017-10-21T21:37:23.034Z] CLI Version:   3.13.1
+[debug] [2017-10-21T21:37:23.034Z] Platform:      win32
+[debug] [2017-10-21T21:37:23.034Z] Node Version:  v8.6.0
+[debug] [2017-10-21T21:37:23.034Z] Time:          Sat Oct 21 2017 14:37:23 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:37:23.034Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-21T21:37:23.049Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-21T21:37:23.049Z] > authorizing via signed-in user
+[debug] [2017-10-21T21:37:23.049Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/slug-space  
+ Sat Oct 21 2017 14:37:23 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:37:23.502Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:37:23.502Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/slug-space/tokens  
+ Sat Oct 21 2017 14:37:23 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:37:24.034Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Christopher\Desktop\slug-space'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-10-21T21:37:24.534Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/slug-space  
+ Sat Oct 21 2017 14:37:24 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:37:24.534Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/slug-space/apiKeys  
+ Sat Oct 21 2017 14:37:24 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:37:24.534Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/slug-space  
+ Sat Oct 21 2017 14:37:24 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:37:24.955Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:37:24.955Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:37:24.971Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/367997600602/clients/_:getWebAppConfig  
+ Sat Oct 21 2017 14:37:24 GMT-0700 (Pacific Daylight Time)
+[debug] [2017-10-21T21:37:25.002Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T21:37:25.440Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
+[info] +  functions: app: http://localhost:5001/slug-space/us-central1/app
