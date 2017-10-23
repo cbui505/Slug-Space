@@ -1,15 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var auth = require('../middlewares/auth.js'); 
 
-var home = require('./home/home_routes');
-var search = require('./search/search_routes');
+var login = require('./login.js');
+var search = require('./search.js'); 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('./home/');
+  res.render('index');
 });
 
 
-router.use('/home', home);
+
+router.use('/login', login);
 router.use('/search',search); 
 
 module.exports = router;

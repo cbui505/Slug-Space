@@ -1,8 +1,14 @@
 <h1>Login</h1>
 <form>
     <label>username</label>
-    <input type='text' placeholder='Enter Username'>
+    <input id='username' type='text' placeholder='Enter Username'>
     <label>Password</label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-    <button>submit</button>
+    <input id='password' type="password" placeholder="Enter Password" name="psw" required>
+    <button id='login'>Login</button>
 </form>
+<script src='/javascripts/login.js'></script>
+<script>
+    $(document).ready(function(){
+        user.init(); 
+    });
+</script>
