@@ -7,6 +7,7 @@ var search = require('./search.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log(process.env);
   res.render('index');
 });
 

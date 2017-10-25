@@ -1,15 +1,30 @@
-var firebase = require('firebase');
+var firebase = require("firebase-admin");
 
-const config = {
-  apiKey: "AIzaSyAs-ICWUpN1XGavOMCUfXeNzV7RD_OZiLk",
-  authDomain: "slug-space.firebaseapp.com",
-  databaseURL: "https://slug-space.firebaseio.com/",
-  storageBucket: "gs://slug-space.appspot.com/"
-}
-
-firebase.initializeApp(config); 
+firebase.initializeApp({
+  credential: firebase.credential.cert({
+    projectId: process.env.fire_project_id,
+    clientEmail: process.env.fire_client_email,
+    privateKey: process.env.fire_private_key
+  }),
+  databaseURL: "https://slug-space.firebaseio.com"
+});
 
 module.exports = {
+    createUser: function(userInfo){
+      var params = {};
+      params.email = userInfo.email? userInfo.email : undefined;
+      params.email_verified = false,
+      params.password = userInfo.password? userInfo.password : undefined; 
+      params.imgURL = userInfo.imgURL?userInfo.imgURL : undefined; 
+
+      firebase.auth().createUser(params)
+      .then(function(userRecord){
+        console.log(userRecord); 
+      })
+      .catch(function(error){
+        console.log('extreme failure'); 
+      }); 
+    },
     isAuthenticated: function (req, res, next) {
       var user = firebase.auth().currentUser;
       if (user !== null) {
@@ -20,7 +35,10 @@ module.exports = {
       }
     },
     loginUser: function(username,password){
-      firebase.auth().signInWithEmailAndPassword(username,password)
+      firebase.auth().getUserByEmail(username)
+      .then(function(userRecord){
+        console.log(userRecord.toJSON); 
+      })
       .catch(function(error){
         console.log('failure');
       });

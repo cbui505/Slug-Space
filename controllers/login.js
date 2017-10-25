@@ -9,8 +9,13 @@ router.get('/',function(req,res,next){
 router.post('/auth',function(req,res,next){
     console.log('hello world');
     console.log(req.body); 
-    auth.loginUser(req.body.username, req.body.password);
+    var userInfo = {
+        email: req.body.username, 
+        password: req.body.password
+    };
+    auth.createUser(userInfo);
     console.log('success');
 });
+
 
 module.exports = router; 
