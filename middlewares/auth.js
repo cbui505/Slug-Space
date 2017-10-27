@@ -1,6 +1,7 @@
 var admin = require("firebase-admin");
 var firebase = require('firebase');
-
+var express = require('express');
+var router = express.Router(); 
 
 admin.initializeApp({
     credential: admin.credential.cert({
@@ -18,7 +19,10 @@ var config = {
   storageBucket: "slug-space.appspot.com",
   messagingSenderId: "367997600602"
 };
+
 firebase.initializeApp(config);
+
+
 
 module.exports = {
     loginUser: function(username,password,cb){
@@ -26,7 +30,7 @@ module.exports = {
       .then(function(userInfo){
         admin.auth().createCustomToken(userInfo.uid)
         .then(function(token){
-          return new Promise(function(resolve,reject))
+          cb(token); 
         })
         .catch(function(error){
           console.log(error); 

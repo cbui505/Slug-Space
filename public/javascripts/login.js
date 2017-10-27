@@ -22,7 +22,7 @@ var user = (function(){
             
             if(params){
                 postLoginInfo(params).then(function(res){
-                    console.log(res.message);
+                    console.log(res.token);
                 });
             }
         });
