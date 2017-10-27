@@ -7,14 +7,22 @@ router.get('/',function(req,res,next){
 });
 
 router.post('/auth',function(req,res,next){
-    console.log('hello world');
-    console.log(req.body); 
     var userInfo = {
         email: req.body.username, 
         password: req.body.password
     };
-    auth.createUser(userInfo);
-    console.log('success');
+    
+    auth.loginUser(userInfo.email, userInfo.password,next); 
+    
+});
+router.post('signup',function(req,res,next){
+    var userInfo = {
+        email: req.body.username, 
+        password: req.body.password
+    };
+    
+    auth.loginUser(userInfo.email, userInfo.password); 
+    
 });
 
 

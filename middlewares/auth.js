@@ -1,46 +1,40 @@
-var firebase = require("firebase-admin");
+var admin = require("firebase-admin");
+var firebase = require('firebase');
 
-firebase.initializeApp({
-  credential: firebase.credential.cert({
+
+admin.initializeApp({
+    credential: admin.credential.cert({
     projectId: process.env.fire_project_id,
     clientEmail: process.env.fire_client_email,
     privateKey: process.env.fire_private_key
   }),
   databaseURL: "https://slug-space.firebaseio.com"
 });
+var config = {
+  apiKey: "AIzaSyAs-ICWUpN1XGavOMCUfXeNzV7RD_OZiLk",
+  authDomain: "slug-space.firebaseapp.com",
+  databaseURL: "https://slug-space.firebaseio.com",
+  projectId: "slug-space",
+  storageBucket: "slug-space.appspot.com",
+  messagingSenderId: "367997600602"
+};
+firebase.initializeApp(config);
 
 module.exports = {
-    createUser: function(userInfo){
-      var params = {};
-      params.email = userInfo.email? userInfo.email : undefined;
-      params.email_verified = false,
-      params.password = userInfo.password? userInfo.password : undefined; 
-      params.imgURL = userInfo.imgURL?userInfo.imgURL : undefined; 
-
-      firebase.auth().createUser(params)
-      .then(function(userRecord){
-        console.log(userRecord); 
+    loginUser: function(username,password,cb){
+      firebase.auth().signInWithEmailAndPassword(username,password)
+      .then(function(userInfo){
+        admin.auth().createCustomToken(userInfo.uid)
+        .then(function(token){
+          return new Promise(function(resolve,reject))
+        })
+        .catch(function(error){
+          console.log(error); 
+          return undefined; 
+        })
       })
-      .catch(function(error){
-        console.log('extreme failure'); 
-      }); 
-    },
-    isAuthenticated: function (req, res, next) {
-      var user = firebase.auth().currentUser;
-      if (user !== null) {
-        req.user = user;
-        next();
-      } else {
-        res.redirect('/login');
-      }
-    },
-    loginUser: function(username,password){
-      firebase.auth().getUserByEmail(username)
-      .then(function(userRecord){
-        console.log(userRecord.toJSON); 
-      })
-      .catch(function(error){
-        console.log('failure');
+      .catch(function(err){
+        console.log(err.message); 
       });
     }
   }
