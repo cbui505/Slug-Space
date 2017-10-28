@@ -21,24 +21,25 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
-
+function handleError(error){
+  console.error(error.message); 
+}
+function handleLogin(username,password,cb){
+  firebase.auth()
+  .signInWithEmailAndPassword(username,password).
+  then(function(userInfo){
+    createCustomToken(userInfo,cb);
+  })
+  .catch(handleError);
+}
+function createCustomToken(userInfo,cb){
+  admin.auth().createCustomToken(userInfo.uid)
+  .then(cb)
+  .catch(handleError);
+}
 
 module.exports = {
     loginUser: function(username,password,cb){
-      firebase.auth().signInWithEmailAndPassword(username,password)
-      .then(function(userInfo){
-        admin.auth().createCustomToken(userInfo.uid)
-        .then(function(token){
-          cb(token); 
-        })
-        .catch(function(error){
-          console.log(error); 
-          return undefined; 
-        })
-      })
-      .catch(function(err){
-        console.log(err.message); 
-      });
+      handleLogin(username,password,cb);      
     }
   }

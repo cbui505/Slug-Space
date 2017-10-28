@@ -2,6 +2,9 @@ var user = (function(){
     var url;
 
     function init(){
+        if($.cookie('token')){
+            window.location.href="/search";
+        }
         bindLoginButton(); 
     }
 
@@ -20,10 +23,12 @@ var user = (function(){
                 params.password = $password.val(); 
             }
             
-            if(params){
+            if(params && !$.cookie('token')){
                 postLoginInfo(params).then(function(res){
-                    console.log(res.token);
+                    console.log(res.message);
                 });
+            } else {
+                window.location.href = '/search';
             }
         });
     }

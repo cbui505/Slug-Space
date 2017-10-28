@@ -8,16 +8,14 @@ router.get('/',function(req,res,next){
 });
 
 router.post('/auth',function(req,res,next){
-    var userInfo = {
-        email: req.body.username, 
-        password: req.body.password
-    };
+    var email = req.body.username;
+    var password = req.body.password;
     // response obj not visible to auth so, pass callback
     // and send response to the client. 
-    var cb = function (token){
-        res.send({token:token}); 
+    var setUserCookie = function (token){
+        res.cookie('token',token).send({message:'cookie successfully set'});
     }
-    auth.loginUser(userInfo.email, userInfo.password,cb); 
+    auth.loginUser(email, password,setUserCookie); 
 });
 
 router.post('signup',function(req,res,next){
