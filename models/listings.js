@@ -10,16 +10,18 @@ firebase.initializeApp({
   databaseURL: "https://slug-space.firebaseio.com"
 });
 
-var slugDB = firebase.database();
-var ref = slugDB.ref('Listings');
 
-//cannot find vars for listings!!
-var data = {
-	Address: ListingsDataVAR,
-	Rent:rent,
-  Deposit: deposit,
-  Fee: fee
-  Description: description
-}
-ref.push(data);
 
+exports.sendData = function(address, rent, deposit, fee, description){
+    //cannot find vars for listings!!
+  var slugDB = firebase.database();
+  var ref = slugDB.ref('Listings');
+  var data = {
+    Address: add,
+    Rent:rent,
+    Deposit: deposit,
+    Fee: fee
+    Description: description
+  }
+  ref.push(data);
+};
