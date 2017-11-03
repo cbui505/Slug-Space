@@ -20,7 +20,7 @@ exports.sendData = function(address, rent, deposit, fee, description){
     Address: add,
     Rent:rent,
     Deposit: deposit,
-    Fee: fee
+    Fee: fee,
     Description: description
   }
   ref.push(data);
