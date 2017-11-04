@@ -1,3 +1,4 @@
+
 var createListing = (function(){
     
     function init(){
@@ -44,12 +45,23 @@ var createListing = (function(){
             
             //add coordinates array to listing. Warning: could be empty
             listing.coordinates = coordinates;
+            postListingInfo(listing);
 
-            //for now, print to console
+            //debug
             console.log(listing);
-
-            /*TODO: make call to functions defined in models to store user input */
         })
+    }
+
+    /* Post data to designated url*/
+    function postListingInfo(data){
+        //set url to post
+        url = window.location.origin + '/createListing/sendListing'; 
+        return $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            dataType: 'json'
+        });
     }
 
     return {
