@@ -2,11 +2,17 @@
 var createListing = (function(){
     
     function init(){
+        //if(!$.cookie('token')){
+            window.location.href = window.origin + "/";
+        //}
+
         bindCreateButton();
     }
 
+    //geocoder used later to parse coordinates as addresses
     geocoder = new google.maps.Geocoder();
 
+    /* Wait for user to press the submit button */
     function bindCreateButton(){
         //object that will store user input as attributes
         var listing;
@@ -32,21 +38,20 @@ var createListing = (function(){
             listing.desciption = $description.val() ? $description.val() : "No description provided" ;
 
             //parse input address as latitude,longitude coordinates            
-            var coordinates = [];
             //restrict address to Santa Cruz area
             geocoder.geocode( { 'address' : listing.address + ", Santa Cruz, CA"}, function( results, status ) {
                 if( status == google.maps.GeocoderStatus.OK ) {
-                    coordinates.push(results[0].geometry.location.lat());
-                    coordinates.push(results[0].geometry.location.lng());
-                } else {
+                    //store coordinates in separate fields (firebase giving issues with arrays)
+                    listing.lat = results[0].geometry.location.lat();
+                    listing.long = results[0].geometry.location.lng();
+                    postListingInfo(listing);
+                } 
+                //if we fail to parse coordinates, it's invalid
+                else {
                     alert( 'Failed to geocode address with error: ' + status );
                 }
             } );
             
-            //add coordinates array to listing. Warning: could be empty
-            listing.coordinates = coordinates;
-            postListingInfo(listing);
-
             //debug
             console.log(listing);
         })

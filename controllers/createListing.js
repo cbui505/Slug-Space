@@ -20,8 +20,12 @@ router.post('/sendListing',function(req,res,next){
 router.post('/getListing',function(req,res,next){
     //debug
     console.log("on route to getting those listings");
+    //our callback function
+    var allListings = function(data){
+        console.log("The data you got back was ", data);
+    };
     //get the listing data from client side, pass to middleware
-    create.getListing();
+    create.getListings(allListings);
 });
 
 module.exports = router; 

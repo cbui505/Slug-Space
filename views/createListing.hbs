@@ -1,3 +1,15 @@
+<head>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFIklLWIVn9fal8b7hHmiMZln8tY4W8ig"></script>
+<script src='/javascripts/createListing.js'></script>
+<script>
+        //run init function at beginning to check if user is logged in
+        createListing.init(); 
+</script>
+
+</head>
+
+
 <h1>New Listing</h1>
 <form>
     <label>Property Address*</label>
@@ -24,10 +36,3 @@
     <button id='createButton'>Create</button>
 
 </form>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFIklLWIVn9fal8b7hHmiMZln8tY4W8ig"></script>
-<script src='/javascripts/createListing.js'></script>
-<script>
-    $(document).ready(function(){
-        createListing.init(); 
-    });
-</script>

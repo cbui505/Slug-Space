@@ -8,13 +8,10 @@ function sendListing(listing){
 }
 
 /* get all listings stored as an object */
-function getListings(){
+function getListings(cb){
     //use this as cb to pass data back
-    var allListings = function(data){
-        console.log("The data you got back was ", data);
-    };
     //access db through function in models folder
-    db.getUserListings(allListings);
+    db.getUserListings(cb);
 }
 
 /* Export functions for use in other parts of app */
@@ -22,7 +19,7 @@ module.exports = {
     sendListing: function(listing){
       sendListing(listing);      
     },
-    getListings: function(){
-        getListings();
+    getListings: function(cb){
+        getListings(cb);
     }
 }
