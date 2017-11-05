@@ -1,15 +1,5 @@
 var firebase = require("firebase");
 
-/*firebase.initializeApp({
-    credential: firebase.credential.cert({
-    projectId: process.env.fire_project_id,
-    clientEmail: process.env.fire_client_email,
-    privateKey: process.env.fire_private_key
-  }),
-  databaseURL: "https://slug-space.firebaseio.com"
-}); */
-
-
 /*Store the listing's data in the database */
 exports.sendData = function(listing){
   //debug
@@ -20,21 +10,15 @@ exports.sendData = function(listing){
   ref.push(listing);
 };
 
-//return all listings currently in the database
-exports.getUserListings = function(){
+/* return all listings currently in the database */
+exports.getUserListings = function(cb){
   //get reference to database
   var slugDB = firebase.database();
   var ref = slugDB.ref('Listings');
-  var data = null;  //data is null and does not update in time
+  //get a snapshot of the listings in the db
   ref.once('value').then(function(snap) {
     var listings = snap.val();
-    //console.log(listings);   //would print listings since inside promise 
-    data = listings;
+    //pass listings along to cb function to avoid asynchronous bugs
+    cb(listings);
   });
-  return data;
-  //BUG: data is never updated since functions are asyncronous
-}
-
-function getUserListingsHelper(data){
-  console.log(data);
 }

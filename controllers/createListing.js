@@ -7,7 +7,7 @@ router.get('/',function(req,res,next){
     res.render('createListing');
 });
 
-//send the data to the middleware, which will send to models
+/* send the data to the middleware, which will send to models */
 router.post('/sendListing',function(req,res,next){
     //debug
     console.log("made it here");
@@ -15,6 +15,13 @@ router.post('/sendListing',function(req,res,next){
     var listing = req.body;
     console.log(listing);
     create.sendListing(listing);
+});
+
+router.post('/getListing',function(req,res,next){
+    //debug
+    console.log("on route to getting those listings");
+    //get the listing data from client side, pass to middleware
+    create.getListing();
 });
 
 module.exports = router; 
