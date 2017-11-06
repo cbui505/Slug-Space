@@ -4,6 +4,7 @@ var auth = require('../middlewares/auth.js');
 
 var login = require('./login.js');
 var search = require('./search.js'); 
+var createListing = require('./createListing.js');
 
 var isAuthenticated; 
 
@@ -14,5 +15,6 @@ router.get('/', function(req, res, next) {
 
 router.use('/login', login);
 router.use('/search',search); 
+router.use('/createListing', createListing);
 
 module.exports = router;
