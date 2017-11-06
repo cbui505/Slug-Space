@@ -2,11 +2,13 @@
 var createListing = (function(){
     
     function init(){
+        //check if user is logged in. removed for now for debug
         //if(!$.cookie('token')){
-            window.location.href = window.origin + "/";
+           // window.location.href = window.origin + "/"; 
         //}
 
         bindCreateButton();
+        bindCheckButton();
     }
 
     //geocoder used later to parse coordinates as addresses
@@ -44,7 +46,7 @@ var createListing = (function(){
                     //store coordinates in separate fields (firebase giving issues with arrays)
                     listing.lat = results[0].geometry.location.lat();
                     listing.long = results[0].geometry.location.lng();
-                    postListingInfo(listing);
+                    postListingInfo(listing, "sendListing");
                 } 
                 //if we fail to parse coordinates, it's invalid
                 else {
@@ -57,10 +59,18 @@ var createListing = (function(){
         })
     }
 
+    function bindCheckButton(){
+        $('#getButton').on('click', function(e){
+                  e.preventDefault();
+                  postListingInfo(null, "getListing")
+        
+        })
+    }
+
     /* Post data to designated url*/
-    function postListingInfo(data){
+    function postListingInfo(data, link){
         //set url to post
-        url = window.location.origin + '/createListing/sendListing'; 
+        url = window.location.origin + '/createListing/' + link; 
         return $.ajax({
             url: url,
             method: 'POST',

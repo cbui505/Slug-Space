@@ -4,7 +4,10 @@
 <script src='/javascripts/createListing.js'></script>
 <script>
         //run init function at beginning to check if user is logged in
+
+        $(document).ready(function(){
         createListing.init(); 
+    });
 </script>
 
 </head>
@@ -34,5 +37,6 @@
 
     <br><br>
     <button id='createButton'>Create</button>
+    <button id='getButton'>Check listings</button>
 
 </form>

@@ -15,10 +15,17 @@ exports.getUserListings = function(cb){
   //get reference to database
   var slugDB = firebase.database();
   var ref = slugDB.ref('Listings');
+
+  var listingsArray = [];
+
   //get a snapshot of the listings in the db
   ref.once('value').then(function(snap) {
     var listings = snap.val();
+    snap.forEach(function(element) {
+        var elementVal = element.val();
+        listingsArray.push(elementVal);
+    });
     //pass listings along to cb function to avoid asynchronous bugs
-    cb(listings);
+    cb(listingsArray);
   });
 }
