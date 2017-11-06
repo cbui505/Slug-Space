@@ -6,7 +6,7 @@ var login = require('./login.js');
 var search = require('./search.js'); 
 var createListing = require('./createListing.js');
 
-var isAuthenticated; 
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,7 +14,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/login', login);
-router.use('/search',search); 
 router.use('/createListing', createListing);
+router.use('/search',search); 
+
 
 module.exports = router;
