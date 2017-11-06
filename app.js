@@ -24,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //* this tells the app that we are using the routes dir for all of our controllers
+
 app.use('/', controllers);
 
 

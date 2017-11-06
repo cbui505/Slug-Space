@@ -5,12 +5,12 @@ var auth = require('../middlewares/auth.js');
 var login = require('./login.js');
 var search = require('./search.js'); 
 
+var isAuthenticated; 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
-
-
 
 router.use('/login', login);
 router.use('/search',search); 

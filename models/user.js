@@ -29,10 +29,10 @@ exports.getById = function(id){
     });
 };
 
-exports.createUser = function(user_info){
+exports.createUser = function(user_info,cb){
     firebase.auth().createUser(user_info)
     .then(function(user_record){
-        return user_record.toJSON(); 
+        user_record.toJSON(); 
     })
     .catch(function(error){
         return error.message;

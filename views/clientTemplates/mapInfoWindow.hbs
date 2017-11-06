@@ -1,0 +1,32 @@
+<script id="map-window" type="text/x-handlebars-template">
+  <div id='content'>
+      <!--basic listing information should go here-->
+      <div class="img">
+        {{#if img_exists}}<img src={{img}}\>
+        {{else}}<img src="static/img/no_image.jpg"/>
+        {{/if }}
+      </div>
+      <div class="info">
+          <table class="table table-sm">
+              <tbody>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Rent</td>
+                        <td>{{rent}}</td>
+                    </tr>
+                    <tr>
+                        <td>Deposit</td>
+                        <td>{{deposit}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{description}}</td>
+                    </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</script>

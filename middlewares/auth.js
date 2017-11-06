@@ -38,8 +38,9 @@ function createCustomToken(userInfo,cb){
   .catch(handleError);
 }
 
+
 module.exports = {
     loginUser: function(username,password,cb){
       handleLogin(username,password,cb);      
-    }
+    },
   }
