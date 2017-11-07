@@ -27,5 +27,6 @@ exports.getUserListings = function(cb){
     });
     //pass listings along to cb function to avoid asynchronous bugs
     cb(listingsArray);
+    
   });
 }
