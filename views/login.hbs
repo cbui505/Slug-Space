@@ -1,11 +1,28 @@
-<h1>Login</h1>
-<form>
-    <label>username</label>
+<div class="container">
+    <h1>Login</h1>
+
+    <div class="login_inner">
+    <form>
+    <label>Username</label>
+    <br>
     <input id='username' type='text' placeholder='Enter Username'>
+    <br>
     <label>Password</label>
+    <br>
     <input id='password' type="password" placeholder="Enter Password" name="psw" required>
+    <br>
+    <div class="btns">
     <button id='login'>Login</button>
+    <br>
+    </div>
+    <div style="float: center; margin-left: 53%">
+        <a href="/reset">Forgot Password?</a>
+        <br>
+        <b>Not Registered?</b> <a href="/signup">Sign Up</a>
+    </div>  
+    </div>
 </form>
+</div>
 <script src='/javascripts/login.js'></script>
 <script>
     $(document).ready(function(){

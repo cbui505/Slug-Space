@@ -1,8 +1,161 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #777;
+    font: normal 15px "Roboto", Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+p {
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+header {
+    height: 135px;
+    width: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0.5cm;
+}
+
+header h1 {
+    height: auto;
+    width: auto;
+    float: left;
+    padding-left: 50px;
+    color: #444;
+    font-weight: 50;
+    font-size: 65px;
+    margin: 0px;
+    position: absolute;
+}
+
+.login {
+    height: auto;
+    width: auto;
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
+
+.login ul li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.login a {
+    color: #444;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.home {
+    height: auto;
+    width: auto;
+    width: auto;
+    position: absolute;
+    top: 130px;
+}
+
+.home ul li {
+    display: inline-block;
+}
+
+.home .button {
+    color: #444;
+    background-color: clear;
+    border: 1px solid #444;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+#map {
+    height: 500px;
+    width: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background: #444;
+    border: 2px solid #444;
+}
+
+.button:hover {
+    background-color: #555555;
+    color: white;
+}
+
+.container {
+    width: 50%;
+    height: 500px;
+    padding: 10px;
+    margin: auto;
+}
+
+.container h1 {
+    float: center;
+    margin-left: 30%;
+    font-weight: 50;
+}
+
+.container a {
+    font-family: "Roboto" sans-serif;
+    color: #444;
+    text-decoration: none;
+}
+
+.login_inner {
+    width: 40%;
+    height: 300px;
+    padding: 10px;
+    margin: auto;
+    border: 2px solid #444;
+}
+
+.signup_inner {
+    width: 40%;
+    height: 350px;
+    padding: 10px;
+    margin: auto;
+    border: 2px solid #444;
+}
+
+.btns {
+    margin-left: 190px;
+    margin-top: 10px;
+}
+
+#reset {
+    align-items: center;
+}
+
+input[type=text],
+input[type=password] {
+    outline: 0;
+    background: #f2f2f2;
+    width: 95%;
+    border: 0;
+    margin: 0 0 5px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 92%;
+    color: #444;
+    background-color: clear;
+    border: 1px solid #444;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-weight: 100;
+    font-size: 20px;
+    cursor: pointer;
 }
