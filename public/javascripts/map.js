@@ -7,7 +7,9 @@ var map = (function(){
         center: {lat: 36.9914, lng: -122.0609},
         zoom: 13
       });
-      getListings().then(processListings).then(renderMarkerWindowTemplates);
+      getListings()
+      .then(processListings)
+      .then(renderMarkerWindowTemplates);
     }
     function processListings(allListings){
         markers = [];
@@ -23,7 +25,7 @@ var map = (function(){
         return markers;
       }
     function getListings(){
-        var url = window.location.href + 'allListings';
+        var url = window.location.href + '/allListings';
         return $.ajax({
             url: url,
             method: 'GET',
