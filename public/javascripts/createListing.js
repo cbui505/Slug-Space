@@ -2,17 +2,20 @@
 var createListing = (function(){
     
     function init(){
-        //check if user is logged in. removed for now for debug
+        //check if user is logged in. removed for now for debug. Should probably have logout 
         //if(!$.cookie('token')){
            // window.location.href = window.origin + "/"; 
         //}
 
         bindCreateButton();
         bindCheckButton();
+        bindUpload();
     }
 
     //geocoder used later to parse coordinates as addresses
     geocoder = new google.maps.Geocoder();
+
+    var file = null;
 
     /* Wait for user to press the submit button */
     function bindCreateButton(){
@@ -37,7 +40,10 @@ var createListing = (function(){
             //set default values if fields were left empty
             listing.deposit = $deposit.val() ? $deposit.val() : 0;
             listing.fee = $fee.val() ? $fee.val() : 0;
-            listing.desciption = $description.val() ? $description.val() : "No description provided" ;
+            listing.description = $description.val() ? $description.val() : "No description provided" ;
+
+            listing.file = null;
+            console.log(file);
 
             //parse input address as latitude,longitude coordinates            
             //restrict address to Santa Cruz area
@@ -46,7 +52,20 @@ var createListing = (function(){
                     //store coordinates in separate fields (firebase giving issues with arrays)
                     listing.lat = results[0].geometry.location.lat();
                     listing.long = results[0].geometry.location.lng();
-                    postListingInfo(listing, "sendListing");
+                    if(file){
+                         listing.file = file.name;
+                         var data = new FormData();
+                         data.append("file", file);
+                         var url = window.location.origin + '/createListing/uploadImage';
+                         $.ajax({
+                            url: url,
+                            method: 'POST',
+                            data: data,
+                            cache: false,
+                            contentType: false,
+                            processData:false,
+                          });
+                    }
                 } 
                 //if we fail to parse coordinates, it's invalid
                 else {
@@ -64,6 +83,12 @@ var createListing = (function(){
                   e.preventDefault();
                   postListingInfo(null, "getListing")
         
+        })
+    }
+
+    function bindUpload(){
+        $('#pic').on('change', function(event){
+            file = event.target.files[0];
         })
     }
 

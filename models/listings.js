@@ -4,6 +4,7 @@ var firebase = require("firebase");
 exports.sendData = function(listing){
   //debug
   console.log("made it to models");
+
   //get reference to database and where we want to push data
   var slugDB = firebase.database();
   var ref = slugDB.ref('Listings');
@@ -29,4 +30,20 @@ exports.getUserListings = function(cb){
     cb(listingsArray);
     
   });
+}
+
+exports.uploadPicture = function(file){
+  var pic = file;
+  /*var storageRef = firebase.storage();
+  console.log("got to storageref");
+  storageRef.child(file.name).put(file).then(function(snapshot) {
+    console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+    var url = snapshot.downloadURL;
+    console.log('File available at', url);
+    return url;
+  }).catch(function(error) {
+    console.log('Upload failed:', error);
+    return null;
+  }); */
+  console.log("file is ", pic);
 }
