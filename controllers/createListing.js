@@ -1,6 +1,6 @@
 var express = require('express');
 var create = require('../middlewares/sendListing.js');
- 
+var bodyParser = require('body-parser').json(); 
 var router = express.Router();
 
 router.get('/',function(req,res,next){
@@ -28,9 +28,9 @@ router.post('/getListing',function(req,res,next){
     create.getListings(allListings);
 });
 
-router.post('/uploadImage',function(req,res,next){
+router.post('/uploadImage', bodyParser, function(req,res,next){
     var image = req.body;
-    console.log(image);
+    console.log("request body is: ", image);
     create.uploadPic(image);
 });
 
