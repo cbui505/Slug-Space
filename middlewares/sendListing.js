@@ -14,10 +14,6 @@ function getListings(cb){
     db.getUserListings(cb);
 }
 
-function uploadPic(pic){
-    db.uploadPicture(pic);
-}
-
 /* Export functions for use in other parts of app */
 module.exports = {
     sendListing: function(listing){
@@ -25,8 +21,5 @@ module.exports = {
     },
     getListings: function(cb){
         getListings(cb);
-    },
-    uploadPic: function(pic){
-        uploadPic(pic);
     }
 }

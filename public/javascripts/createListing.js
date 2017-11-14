@@ -3,9 +3,9 @@ var createListing = (function(){
     
     function init(){
         //check if user is logged in. removed for now for debug. Should probably have logout 
-        //if(!$.cookie('token')){
-           // window.location.href = window.origin + "/"; 
-        //}
+        if(!$.cookie('token')){
+            window.location.href = window.origin + "/"; 
+        }
 
         bindCreateButton();
         bindCheckButton();
@@ -67,9 +67,9 @@ var createListing = (function(){
                          listing.file = file.name;
                          var data = new FormData();
                          data.append('file', file);
-                         postFile(data);
-                         //uncomment below to resume creation of listings (debug)
-                         //postListingInfo(listing, 'sendListing');
+                         uploadPicture(file);
+                         //post the listing
+                         postListingInfo(listing, 'sendListing');
                     }
                 } 
                 //if we fail to parse coordinates, it's invalid
@@ -108,22 +108,23 @@ var createListing = (function(){
         });
     }
 
-    /* Post request to url to upload the image */
-    function postFile(file){
-        url = window.location.origin + '/createListing/uploadImage';
-        //this tells us that the formData containing the file gets passed here correctly
-        console.log("data is ",file.get("file"));
-        return $.ajax({
-            url: url,
-            data: file,
-            cache: false,
-            contentType: false,
-            processData: false,
-            method: 'POST',
-            type: 'POST' // For jQuery < 1.9
-            
-        })
-    }
+    /* Upload the picture to firebase's storage space */
+    uploadPicture = function(file){
+        //get reference to firebase storage
+        var storageRef = firebase.storage().ref();
+        console.log("got to storageref, file is ",file);   //debug
+        //storing the file using the file name as a child/key in storage space
+        storageRef.child(file.name).put(file).then(function(snapshot) {
+          console.log('Uploaded', snapshot.totalBytes, 'bytes.'); //debug
+          var url = snapshot.downloadURL;
+          console.log('File available at', url);
+          return url;
+        }).catch(function(error) {
+          //handle upload error
+          console.log('Upload failed:', error);
+          return null;
+        });
+      }
 
     return {
         init: init

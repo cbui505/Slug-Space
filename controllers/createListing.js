@@ -28,11 +28,5 @@ router.post('/getListing',function(req,res,next){
     create.getListings(allListings);
 });
 
-router.post('/uploadImage', bodyParser, function(req,res,next){
-    var image = req.body;
-    console.log("request body is: ", image);
-    create.uploadPic(image);
-});
-
 module.exports = router; 
 

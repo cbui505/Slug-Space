@@ -8,6 +8,7 @@ exports.sendData = function(listing){
   //get reference to database and where we want to push data
   var slugDB = firebase.database();
   var ref = slugDB.ref('Listings');
+  //add the listing to the db
   ref.push(listing);
 };
 
@@ -16,12 +17,13 @@ exports.getUserListings = function(cb){
   //get reference to database
   var slugDB = firebase.database();
   var ref = slugDB.ref('Listings');
-
+  
+  //we will return all of the listings in an array
   var listingsArray = [];
 
   //get a snapshot of the listings in the db
   ref.once('value').then(function(snap) {
-    var listings = snap.val();
+    //iterate over each listing, and add it to the array
     snap.forEach(function(element) {
         var elementVal = element.val();
         listingsArray.push(elementVal);
@@ -30,20 +32,4 @@ exports.getUserListings = function(cb){
     cb(listingsArray);
     
   });
-}
-
-exports.uploadPicture = function(file){
-  var pic = file;
-  /*var storageRef = firebase.storage();
-  console.log("got to storageref");
-  storageRef.child(file.name).put(file).then(function(snapshot) {
-    console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-    var url = snapshot.downloadURL;
-    console.log('File available at', url);
-    return url;
-  }).catch(function(error) {
-    console.log('Upload failed:', error);
-    return null;
-  }); */
-  console.log("file is ", pic);
 }
