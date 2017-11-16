@@ -196,7 +196,7 @@ button:hover {
 
 .createListings_container h1 {
     float: center;
-    margin-left: 10%;
+    margin-left: 17%;
     font-weight: 50;
 }
 
@@ -207,7 +207,7 @@ button:hover {
 }
 
 .createListings_inner {
-    width: 80%;
+    width: 65%;
     height: 650px;
     padding: 10px;
     margin: auto;
@@ -219,26 +219,25 @@ button:hover {
 input[type=number] {
     outline: 0;
     background: #f2f2f2;
-    width: 80%;
+    width: 85%;
     border: 0;
     margin: 0 0 5px;
     padding: 10px;
     box-sizing: border-box;
 }
 
-input[type=number],
-#description {
-    width: 80%;
+input[type=number] {
+    width: 60%;
 }
 
 .createListings_button {
-    margin-right: 100px;
+    margin-right: 50px;
     margin-top: 10px;
 }
 
 #createButton,
 #getButton {
     width: 50%;
-    margin-left: 47%;
+    margin-left: 45%;
     text-transform: uppercase;
 }
