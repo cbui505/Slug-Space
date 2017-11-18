@@ -44,12 +44,9 @@ var createListing = (function(){
 
             //null if user does not upload file
             listing.file = null;
-            //debug: print the file user wants to upload
-            console.log(file);
+
             //get coordinates from address, check if user uploads file
             getCoordinates(listing);
-            //debug
-            console.log(listing);
         })
     }
 
@@ -61,16 +58,8 @@ var createListing = (function(){
                     //store coordinates in separate fields (firebase giving issues with arrays)
                     listing.lat = results[0].geometry.location.lat();
                     listing.long = results[0].geometry.location.lng();
-                    //if user is uploading file
-                    if(file){
-                         //store file's name into corresponding listing
-                         listing.file = file.name;
-                         var data = new FormData();
-                         data.append('file', file);
-                         uploadPicture(file);
-                         //post the listing
-                         postListingInfo(listing, 'sendListing');
-                    }
+                    //store file, pass callback function to post the listing
+                    uploadPicture(file, postListingInfo, listing);
                 } 
                 //if we fail to parse coordinates, it's invalid
                 else {
@@ -108,22 +97,29 @@ var createListing = (function(){
         });
     }
 
-    /* Upload the picture to firebase's storage space */
-    uploadPicture = function(file){
+    /* Upload the picture to firebase's storage space, set file field for listing in db */
+    uploadPicture = function(file, cb, listing){
         //get reference to firebase storage
         var storageRef = firebase.storage().ref();
         console.log("got to storageref, file is ",file);   //debug
-        //storing the file using the file name as a child/key in storage space
-        storageRef.child(file.name).put(file).then(function(snapshot) {
-          console.log('Uploaded', snapshot.totalBytes, 'bytes.'); //debug
-          var url = snapshot.downloadURL;
-          console.log('File available at', url);
-          return url;
-        }).catch(function(error) {
-          //handle upload error
-          console.log('Upload failed:', error);
-          return null;
-        });
+        //upload file if it is provided by user
+        if(file){
+            //storing the file using the file name as a child/key in storage space
+            storageRef.child(file.name).put(file).then(function(snapshot) {
+             console.log('Uploaded', snapshot.totalBytes, 'bytes.'); //debug
+             var url = snapshot.downloadURL;
+             console.log('File available at', url);
+             listing.file = url;
+             //run cb function to post listing with updated file
+             cb(listing, 'sendListing');
+             }).catch(function(error) {
+             //handle upload error
+             console.log('Upload failed:', error);
+             listing.file = null;
+            });
+        }
+        //run cb function on listing, will set file to null
+        else cb(listing, 'sendListing');
       }
 
     return {
