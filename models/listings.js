@@ -17,10 +17,10 @@ exports.getUserListings = function(cb){
   //get reference to database
   var slugDB = firebase.database();
   var ref = slugDB.ref('Listings');
-  
+  console.log('hi');
   //we will return all of the listings in an array
   var listingsArray = [];
-
+  
   //get a snapshot of the listings in the db
   ref.once('value').then(function(snap) {
     //iterate over each listing, and add it to the array
