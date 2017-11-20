@@ -33,3 +33,9 @@ exports.getUserListings = function(cb){
     
   });
 }
+
+/* filters the listings based on specified filters */
+exports.filterListings = function(filters, cb){
+   //filters: object that contains a max_rent, max_tenants, min_bed
+   //cb: callback function that will execute result of this. (needed for asyncronous) see ex above
+}

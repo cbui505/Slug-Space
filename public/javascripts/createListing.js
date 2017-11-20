@@ -6,7 +6,7 @@ var createListing = (function(){
         if(!$.cookie('token')){
             window.location.href = window.origin + "/"; 
         }
-
+        //check for press of the following buttons
         bindCreateButton();
         bindCheckButton();
         bindUpload();
@@ -31,22 +31,36 @@ var createListing = (function(){
             var $deposit = $('#deposit');
             var $fee = $('#fee');
             var $description = $('#description');
+            var $beds = $('#beds');
+            var $baths = $('#baths');
+            var $tenants = $('#tenants');
 
             //get values from user input fields and store inside listing object
             listing = {};
             //address and rent were required in hbs, will have a value
             listing.address = $address.val();
             listing.rent = $rent.val();
-            //set default values if fields were left empty
-            listing.deposit = $deposit.val() ? $deposit.val() : 0;
-            listing.fee = $fee.val() ? $fee.val() : 0;
-            listing.description = $description.val() ? $description.val() : "No description provided" ;
 
-            //null if user does not upload file
-            listing.file = null;
+            //make sure user fills in required fields
+            if(!listing.address || !listing.rent){
+                alert("Please fill in all required fields");
+            }
+            else{
+                //set default values if fields were left empty
+                listing.deposit = $deposit.val() ? $deposit.val() : 0;
+                listing.fee = $fee.val() ? $fee.val() : 0;
+                listing.description = $description.val() ? $description.val() : "No description provided" ;
+                listing.beds = $beds.val() ? $beds.val() : 0;
+                listing.baths = $baths.val() ? $baths.val() : 0;
+                listing.tenants = $tenants.val() ? $tenants.val() : 1;
 
-            //get coordinates from address, check if user uploads file
-            getCoordinates(listing);
+                //null if user does not upload file
+                listing.file = null;
+
+                //get coordinates from address, check if user uploads file
+                getCoordinates(listing);
+                console.log(listing);
+            }
         })
     }
 
