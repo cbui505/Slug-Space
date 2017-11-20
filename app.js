@@ -22,7 +22,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.get('/views/:name',function(req,res,next){
+  var path = __dirname + req.path;
+  console.log(path);
+  res.sendFile(__dirname + '/views/clientSideTemplate/' + req.params.name); 
+})
 //* this tells the app that we are using the routes dir for all of our controllers
 app.use('/', controllers);
 

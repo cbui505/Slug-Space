@@ -1,0 +1,62 @@
+<head>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFIklLWIVn9fal8b7hHmiMZln8tY4W8ig"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
+<script>
+//pass in firebase config data
+var config = {
+  apiKey: "AIzaSyAs-ICWUpN1XGavOMCUfXeNzV7RD_OZiLk",
+  authDomain: "slug-space.firebaseapp.com",
+  databaseURL: "https://slug-space.firebaseio.com",
+  projectId: "slug-space",
+  storageBucket: "slug-space.appspot.com",
+  messagingSenderId: "367997600602"
+};
+
+//initialize firebase app so we can use storage
+firebase.initializeApp(config);
+</script>
+
+<script src='/javascripts/createListing.js'></script>
+<script>
+        //run init function at beginning to check if user is logged in
+
+        $(document).ready(function(){
+        createListing.init(); 
+    });
+</script>
+
+</head>
+
+
+<h1>New Listing</h1>
+<form>
+    <label>Property Address*</label>
+    <br>
+    <input id='address' type='text' placeholder='Enter Address' required>
+    <br><br>
+    <label>Rent (per month)*</label>
+    <br>
+    <input id='rent' type="number" placeholder="Enter Rent ($)" name="rent" required>
+    <br><br>
+    <label>Deposit</label>
+    <br>
+    <input id='deposit' type="number" placeholder="$0" name="deposit">
+    <br><br>
+    <label>Application Fee</label>
+    <br>
+    <input id='fee' type="number" placeholder="$0" name="fee">
+    <br><br>
+    <label>Property Description</label>
+    <br><br>
+    <textarea id="description" name="paragraph_text" cols="40" rows="4"></textarea>
+    <br><br>
+    
+    <label>Upload Cover picture</label>
+    <input type="file" id="pic" accept="image/*">
+    <br><br>
+    <button id='createButton'>Create</button>
+    <button id='getButton'>Check listings</button>
+
+</form>
