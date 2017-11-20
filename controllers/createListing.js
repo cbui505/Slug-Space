@@ -1,6 +1,6 @@
 var express = require('express');
 var create = require('../middlewares/sendListing.js');
- 
+var bodyParser = require('body-parser').json(); 
 var router = express.Router();
 
 router.get('/',function(req,res,next){
