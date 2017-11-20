@@ -78,7 +78,7 @@ header h1 {
 }
 
 #map {
-    height: 500px;
+    min-height: 600px;
     width: auto;
     margin-top: 40px;
     margin-bottom: 20px;
@@ -240,4 +240,37 @@ input[type=number] {
     width: 50%;
     margin-left: 45%;
     text-transform: uppercase;
+}
+
+
+/*SEARCH*/
+
+.search header {
+    height: 50px;
+    width: auto;
+}
+
+.search h1 {
+    float: center;
+    font-weight: 50;
+    font-size: 50px;
+    position: absolute;
+}
+
+.mapSearch #map {
+    border: 3px solid #444;
+}
+
+
+/*MARKERBOX*/
+
+#content {
+    border: 1px solid #444;
+    margin: 4px;
+}
+
+#table {
+    width: auto;
+    height: auto;
+    margin: 2px;
 }
