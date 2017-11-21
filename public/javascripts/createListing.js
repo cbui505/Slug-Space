@@ -73,13 +73,37 @@ var createListing = (function(){
                     listing.lat = results[0].geometry.location.lat();
                     listing.long = results[0].geometry.location.lng();
                     //store file, pass callback function to post the listing
-                    uploadPicture(file, postListingInfo, listing);
+                    //uploadPicture(file, postListingInfo, listing);
+                    uploadPicture(file, getBusCommuteTime, listing);
                 } 
                 //if we fail to parse coordinates, it's invalid
                 else {
                     alert( 'Failed to geocode address with error: ' + status );
                 }
             } );
+    }
+
+    /* calculates the time to get to UCSC via bus from address */
+    function getBusCommuteTime(listing){
+        //set address and destination
+        var origin = listing.address + ", Santa Cruz, CA";
+        var destination = "University of California Santa Cruz, High St, Santa Cruz, CA";
+
+        var callback = function(data){
+            console.log("Distance matrix returned: ", data);
+            listing.bus_time = data.rows[0].elements[0].duration.text;
+            listing.distance = data.rows[0].elements[0].distance.text;
+            console.log("listing is ", listing);
+            postListingInfo(listing, "sendListing");
+        }
+
+        var googleDM = new google.maps.DistanceMatrixService();
+        googleDM.getDistanceMatrix({
+            origins: [origin],
+            destinations: [destination],
+            travelMode: 'TRANSIT',
+            unitSystem: google.maps.UnitSystem.IMPERIAL
+          }, callback);
     }
 
     /* handles check button press: will delete this function along with button later on */
@@ -125,7 +149,7 @@ var createListing = (function(){
              console.log('File available at', url);
              listing.file = url;
              //run cb function to post listing with updated file
-             cb(listing, 'sendListing');
+             cb(listing);
              }).catch(function(error) {
              //handle upload error
              console.log('Upload failed:', error);
@@ -133,7 +157,7 @@ var createListing = (function(){
             });
         }
         //run cb function on listing, will set file to null
-        else cb(listing, 'sendListing');
+        else cb(listing);
       }
 
     return {
