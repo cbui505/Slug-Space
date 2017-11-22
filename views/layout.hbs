@@ -12,6 +12,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="/javascripts/utils.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script>
+      //pass in firebase config data
+      var config = {
+        apiKey: "AIzaSyAs-ICWUpN1XGavOMCUfXeNzV7RD_OZiLk",
+        authDomain: "slug-space.firebaseapp.com",
+        databaseURL: "https://slug-space.firebaseio.com",
+        projectId: "slug-space",
+        storageBucket: "slug-space.appspot.com",
+        messagingSenderId: "367997600602"
+      };
+
+      //initialize firebase app so we can use storage
+      firebase.initializeApp(config);
+    </script>
     {{{body}}}
 
   </body>
