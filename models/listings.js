@@ -1,3 +1,4 @@
+
 var firebase = require("firebase");
 
 /*Store the listing's data in the database */
@@ -37,5 +38,32 @@ exports.getUserListings = function(cb){
 /* filters the listings based on specified filters */
 exports.filterListings = function(filters, cb){
    //filters: object that contains a max_rent, max_tenants, min_bed
+   //get reference to database
+  var slugDB = firebase.database();
+  //child = attribute (ex: rent, beds, tenants), need to add value argument in function so users can specify how many (bedrooms, tenants, etc.)
+  var ref = slugDB.rootRef.child('Listings').orderByChild("'" + filters + "'").startAt().endAt().on("value", function(snapshot);
+
+  var listingsArray = [];
+
+  console.log(snapshot.val());
+  snapshot.forEach(function(data) {
+      //console.log(data.key);
+      listingsArray.push(data.key);
+  });
+
+  cb(listingsArray);
+
    //cb: callback function that will execute result of this. (needed for asyncronous) see ex above
 }
+
+
+
+
+
+
+
+
+
+
+
+
