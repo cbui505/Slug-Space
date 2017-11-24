@@ -36,12 +36,12 @@ exports.getUserListings = function(cb){
 }
 
 /* filters the listings based on specified filters */
-exports.filterListings = function(filters, cb){
+exports.filterListings = function(filters,value, cb){
    //filters: object that contains a max_rent, max_tenants, min_bed
    //get reference to database
   var slugDB = firebase.database();
   //child = attribute (ex: rent, beds, tenants), need to add value argument in function so users can specify how many (bedrooms, tenants, etc.)
-  var ref = slugDB.rootRef.child('Listings').orderByChild("'" + filters + "'").startAt().endAt().on("value", function(snapshot);
+  var ref = slugDB.rootRef.child('Listings').orderByChild("'" + filters + "'").startAt().endAt().on("'" + value + "'", function(snapshot);
 
   var listingsArray = [];
 
