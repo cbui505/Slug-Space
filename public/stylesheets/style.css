@@ -84,7 +84,6 @@ header h1 {
     margin-bottom: 20px;
     margin-left: 50px;
     margin-right: 50px;
-    background: #444;
     border: 2px solid #444;
 }
 
@@ -273,4 +272,17 @@ input[type=number] {
     width: auto;
     height: auto;
     margin: 2px;
+}
+
+
+/*ABOUT*/
+
+#about {
+    min-height: 600px;
+    width: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border: 2px solid #444;
 }
