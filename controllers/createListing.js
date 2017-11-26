@@ -9,6 +9,9 @@ var loginState = app.get('login');
 router.get('/',function(req,res,next){
     
     loginState = app.get('login');
+    if(!loginState){
+        res.redirect("../login");
+    }
     res.render('createListing',{'login':loginState});
 });
 

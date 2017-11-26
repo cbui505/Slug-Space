@@ -6,10 +6,11 @@ var app = require('../app.js');
 var user = app.get('currentUser');
 var loginState = app.get('login');
 router.get('/',function(req,res,next){
-    
-    var test = app.get('login');
-    console.log(test);
-    res.render('search',{'login':test});
+    var loginState = app.get('login');
+    if(!loginState){
+        res.redirect("../login");
+    }
+    res.render('search',{'login':loginState});
 });
 
 router.get('/allListings',function(req,res,next){

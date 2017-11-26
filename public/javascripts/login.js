@@ -3,8 +3,7 @@ var user = (function(){
     var currentUser;
     
     function init(){
-        bindLoginButton(); 
-        //observeUserLoginState();    
+        bindLoginButton();     
     }
     function init_user_page(){
         observeUserLoginState();

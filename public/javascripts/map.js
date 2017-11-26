@@ -73,8 +73,3 @@ var map = (function(){
         initMap: initMap 
     }
 }());
-
-$(document).ready(function(){
-    map.initMap(); 
-    user.observeUserLoginState();
-});
