@@ -2,9 +2,14 @@ var express = require('express');
 var create = require('../middlewares/sendListing.js');
 var bodyParser = require('body-parser').json(); 
 var router = express.Router();
+var app = require('../app.js');
 
+var user = app.get('currentUser');
+var loginState = app.get('login');
 router.get('/',function(req,res,next){
-    res.render('createListing');
+    
+    loginState = app.get('login');
+    res.render('createListing',{'login':loginState});
 });
 
 /* send the data to the middleware, which will send to models */
