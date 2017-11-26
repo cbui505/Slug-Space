@@ -12,14 +12,20 @@ router.get('/',function(req,res,next){
 
 router.post('/auth',function(req,res,next){
     var userInfo = req.body;
-    console.log(req.body); 
     // response obj not visible to auth so, pass callback
     // and send response to the client. 
-    app.set('currentUser',userInfo);
+    
+    Object.keys(userInfo).length > 0? app.set('currentUser',userInfo) :
+    app.set('currentUser',undefined);
     var state = app.get('currentUser')?true:false;
-    console.log(state);
+   
     app.set('login', state);
-    res.send({"message":"success"});
+    if(state){
+        res.send({"message":"success"});
+    }else{
+        res.send({"message":"failure"});
+    }
+    
 });
 
 router.post('/signup',function(req,res,next){

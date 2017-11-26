@@ -28,9 +28,13 @@ var user = (function(){
                     }
                 });
             })
-            .catch(handleError);
+            .catch(writeErrorToForm);
         }
     }
+    
+    //google doesn't play nice with jquery sometimes
+    //had to do this the old fashioned way
+    //without $.ajax
     function postUserInfo(userInfo){
         url = window.location.origin + '/login/auth'; 
         var def = $.Deferred();
@@ -49,26 +53,20 @@ var user = (function(){
         return def;
     }
     function handleError(error){
+        
         console.error(error);
     }
-    function validateCookie(data){
-        var url = url = window.location.origin + '/login/validateCookie'; 
-        return $.ajax({
-            url:url,
-            method:'POST',
-            data:data,
-            dataType:'json'
-        });
-    }
-    function handleCookieResponse(data){
-        if(data.status === 'success') {
-            window.location.href='/search';
-        } else{
-            showErrorMessage();
+    function writeErrorToForm(error){
+        var INVALID_EMAIL = 0,
+            INVALID_PASSWORD = 1;
+        switch(mapToErrorCodes(error.code)){
+            case INVALID_EMAIL: 
+                $("#username").parent().find("span").text(error.message);
+                break;
+            case INVALID_PASSWORD:
+                $("#password").parent().find("span").text(error.message);
         }
-    }
-    function showErrorMessage(){
-        console.log('create error on sign in form');
+        console.error(error);
     }
     function observeUserLoginState(){
         var currentUser;
@@ -81,9 +79,6 @@ var user = (function(){
             }
         });
     }
-    function createNewUser(){
-
-    }
     function bindLoginButton(){
         $('#login').on('click',function(e){
             e.preventDefault(); 
@@ -93,15 +88,23 @@ var user = (function(){
     function bindSignOut(){
         $("#signOut").on('click',function(e){
             e.preventDefault();
-            firebase.auth().signOut();
-            redirectToHomePage();
+            postUserInfo().then(function(res){
+                console.log(res.message);
+                firebase.auth().signOut();
+                redirectToHomePage();
+            }); 
+            //redirectToHomePage();
         });
     }
     function redirectToHomePage(){
         window.location = window.location.origin + '/login';
     }
-    function redirectToSearchPage(){
-        window.location = window.location.origin + '/search';
+    function mapToErrorCodes(code){
+        errorMap = {
+            'auth/invalid-email': 0,
+            "auth/wrong-password" : 1
+        };
+        return errorMap[code];
     }
     return {
         get url() {return url},
