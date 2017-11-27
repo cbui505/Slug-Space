@@ -11,7 +11,8 @@ function sendListing(listing){
 function getListings(cb){
     //use this as cb to pass data back
     //access db through function in models folder
-    db.getUserListings(cb);
+    //db.getUserListings(cb);
+      db.getMyListings(cb);
 }
 
 /* Export functions for use in other parts of app */

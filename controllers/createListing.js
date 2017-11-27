@@ -25,6 +25,7 @@ router.post('/sendListing',function(req,res,next){
     create.sendListing(listing);
 });
 
+/* Go to middleware and request for listings */
 router.post('/getListing',function(req,res,next){
     //debug
     console.log("on route to getting those listings");
