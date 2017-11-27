@@ -37,5 +37,19 @@ router.post('/getListing',function(req,res,next){
     create.getListings(allListings);
 });
 
+/* Go to middleware and request listings associated with current user (pass along) */
+router.post('/getMyListings',function(req,res,next){
+    //debug
+    console.log("on route to getting those listings");
+    var email = req.body.email;
+    console.log("email is", email);
+    //our callback function
+    var allListings = function(data){
+        console.log("Your listings: ", data);
+    };
+    //get the listing data from client side, pass to middleware
+    create.getMyListings(allListings, email);
+});
+
 module.exports = router; 
 

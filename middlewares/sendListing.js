@@ -11,8 +11,11 @@ function sendListing(listing){
 function getListings(cb){
     //use this as cb to pass data back
     //access db through function in models folder
-    //db.getUserListings(cb);
-      db.getMyListings(cb);
+    db.getUserListings(cb);
+}
+
+function getMyListings(cb, email){
+    db.getMyListings(cb, email);
 }
 
 /* Export functions for use in other parts of app */
@@ -22,5 +25,8 @@ module.exports = {
     },
     getListings: function(cb){
         getListings(cb);
+    },
+    getMyListings: function(cb, email){
+        getMyListings(cb, email);
     }
 }

@@ -2,10 +2,9 @@
 var createListing = (function(){
     
     function init(){
-        //check if user is logged in. removed for now for debug. Should probably have logout 
-        if(!$.cookie('token')){
-            window.location.href = window.origin + "/"; 
-        }
+        //check if user is logged in and if not, redirect to login page
+        observeUserLoginState();
+
         //check for press of the following buttons
         bindCreateButton();
         bindCheckButton();
@@ -16,6 +15,7 @@ var createListing = (function(){
     geocoder = new google.maps.Geocoder();
 
     var file = null;
+    var user_email = null;
 
     /* handle press of create listing button */
     function bindCreateButton(){
@@ -56,7 +56,6 @@ var createListing = (function(){
 
                 //null if user does not upload file
                 listing.file = null;
-
                 //get coordinates from address, check if user uploads file
                 getCoordinates(listing);
                 console.log(listing);
@@ -93,8 +92,14 @@ var createListing = (function(){
             console.log("Distance matrix returned: ", data);
             listing.bus_time = data.rows[0].elements[0].duration.text;
             listing.distance = data.rows[0].elements[0].distance.text;
-            console.log("listing is ", listing);
-            postListingInfo(listing, "sendListing");
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (!user){
+                    listing.email = null;
+                }else{
+                    listing.email = user.email;
+                    postListingInfo(listing, "sendListing");
+                }
+            });
         }
 
         var googleDM = new google.maps.DistanceMatrixService();
@@ -110,8 +115,9 @@ var createListing = (function(){
     function bindCheckButton(){
         $('#getButton').on('click', function(e){
                   e.preventDefault();
-                  postListingInfo(null, "getListing")
-        
+                  var temp = {};
+                  temp.email = user_email;
+                  postListingInfo(temp, "getMyListings");
         })
     }
 
@@ -159,6 +165,20 @@ var createListing = (function(){
         //run cb function on listing, will set file to null
         else cb(listing);
       }
+
+      /* Check for changes in user's login session */
+      function observeUserLoginState(){
+        var currentUser;
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user){
+                user_email = null;
+                window.location = window.location.origin + '/login';
+            }else{
+                console.log("User is logged in:", user.email);
+                user_email = user.email;
+            }
+        });
+    }
 
     return {
         init: init
