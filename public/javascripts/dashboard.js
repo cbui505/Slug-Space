@@ -1,10 +1,10 @@
 var dashboard = (function(){
-        var getView;
-        var map;
-        
+        var user_email = null;
+
         function initDashboard() {
           console.log("Made it to init boi");
-          getListings()
+          observeUserLoginState()
+          .then(getUserListings)
           .then(processListings)
           .then(renderListingsTemplate);
         }
@@ -16,7 +16,7 @@ var dashboard = (function(){
             });
             return markers;
           }
-        function getListings(){
+        function getUserListings(user_email){
             var url = window.location.href + '/allListings';
             console.log('url:', url);
             return $.ajax({
@@ -26,30 +26,46 @@ var dashboard = (function(){
             });
         }
         function getListingTemplate(){
-            var url = window.location.origin + '/views/listing.hbs';
+            console.log("hello");
+            var url = window.location.origin + '/views/partials/listing.hbs';
+            console.log('url is : ', url); 
             return $.ajax({
                 url:url,
                 method:'GET',
             });
         }
         function renderListingsTemplate(markers){
+            console.log("hello1");
             getListingTemplate().then(function(template){
-                //console.log("1st mark is ", mark);
-                console.log("2nd markers is ",markers);
                 markers.forEach(function(mark){
-                    console.log("template is: ", template);
-                    console.log("2nd mark is ", mark);
-                    console.log("2nd markers is", markers)
+                    console.log('markers is = ', markers);
                     context = {
                         address:mark.info.address,
                         rent: mark.info.rent,
                         deposit: mark.info.deposit,
                         description: mark.info.description
                     };
+                    console.log('made it here and template = ', template);
+                    console.log('context = ', context);
                     var marker_info = utils.renderTemplate(template,context);
                 });
             });
         }
+
+              /* Check for changes in user's login session */
+      function observeUserLoginState(){
+        var currentUser;
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user){
+                user_email = null;
+                window.location = window.location.origin + '/login';
+            }else{
+                console.log("User is logged in:", user.email);
+                user_email = user.email;
+            }
+        });
+    }
+
         return {
             get dashboard() {return dashboard;},
             set dashboard(v) {dashboard = v},
