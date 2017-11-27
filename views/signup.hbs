@@ -1,17 +1,25 @@
-<h1>Login</h1>
+<h1>Sign Up</h1>
 <form>
-    <label>Email</label>
-    <input id='email' type='text' placeholder='Enter Email' required>
-    <br>
-    <label>Password</label>
-    <input id='password' type="password" placeholder="Enter Password" name="psw" required>
-    <br>
-    <label>Re-enter Password</label>
-    <input id='password' type="password" placeholder="Enter Password" name="psw" required>
-    <br>
-    <button id='sign up'>Sign Up</button>
+  <div class="form-group">
+    <label for="username">Email address</label>
+    <input type="email" class="form-control" id='username' aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <span class="error"></span>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Password">
+    <span class="error"></span>
+  </div>
+  <div class="form-group">
+    <label for="re-password">Re-enter Password</label>
+    <input type="password" class="form-control" id="re-password" placeholder="Password">
+    <span class="error"></span>
+  </div>
+  <button type="submit"id="signUp" class="btn btn-primary">Sign Up</button>
 </form>
 <script src='/javascripts/login.js'></script>
+
 <script>
     $(document).ready(function(){
         user.init(); 

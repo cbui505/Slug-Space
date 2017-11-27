@@ -4,6 +4,7 @@ var user = (function(){
     
     function init(){
         bindLoginButton();     
+        bindSignUp();
     }
     function init_user_page(){
         observeUserLoginState();
@@ -58,13 +59,22 @@ var user = (function(){
     }
     function writeErrorToForm(error){
         var INVALID_EMAIL = 0,
-            INVALID_PASSWORD = 1;
+            INVALID_PASSWORD = 1,
+            EMAIL_IN_USE = 2,
+            WEAK_PASSWORD = 3;
         switch(mapToErrorCodes(error.code)){
             case INVALID_EMAIL: 
                 $("#username").parent().find("span").text(error.message);
                 break;
             case INVALID_PASSWORD:
                 $("#password").parent().find("span").text(error.message);
+                break;
+            case EMAIL_IN_USE:
+                $("#username").parent().find("span").text(error.message);
+                break;
+            case WEAK_PASSWORD:
+                $("#password").parent().find("span").text(error.message);
+                break;
         }
         console.error(error);
     }
@@ -96,13 +106,43 @@ var user = (function(){
             //redirectToHomePage();
         });
     }
+    function bindSignUp(){
+        $("#signUp").on('click',function(e){
+            e.preventDefault();
+            signUp();
+        });
+    }
+    function signUp(){
+        var $username = $('#username');
+        var $password = $('#password');
+        var $password2 = $("#re-password"); 
+        if($password.val() !== $password2.val()){
+            console.error("passwords do not match");
+            return;
+        }
+        var currentUser;
+        firebase.auth().createUserWithEmailAndPassword($username.val(),$password.val())
+        .then(function(userInfo){
+            currentUser = userInfo; 
+            console.log('currentUser set');
+            postUserInfo(userInfo).then(function(res){
+                if(res === "success"){
+                    window.location = window.location.origin + '/search';
+                }
+            });
+        })
+        .catch(writeErrorToForm);
+        
+    }
     function redirectToHomePage(){
         window.location = window.location.origin + '/login';
     }
     function mapToErrorCodes(code){
         errorMap = {
             'auth/invalid-email': 0,
-            "auth/wrong-password" : 1
+            "auth/wrong-password" : 1,
+            'auth/email-already-in-use': 2,
+            'auth/weak-password':3,
         };
         return errorMap[code];
     }

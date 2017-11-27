@@ -49,7 +49,9 @@ router.post('/signout',function(req,res,next){
     res.redirect('/login');
     
 });
-
+router.get('/signUp',function(req,res,next){
+    res.render('signup');
+});
 function handleError(error){
     console.err(error);
 }
