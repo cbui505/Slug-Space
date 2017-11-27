@@ -16,7 +16,6 @@ var map = (function(){
         allListings.forEach(function(listing){
             
             var position = {lat:listing['lat']*1,lng: listing['long']*1};
-            console.log(position);
             var mark = setMarker(position);
             delete listing.lat;
             delete listing.long; 
@@ -42,7 +41,6 @@ var map = (function(){
     function renderMarkerWindowTemplates(markers){
         getMarkerTemplate().then(function(template){
             markers.forEach(function(mark){
-                console.log(template);
                 context = {
                     address:mark.info.address,
                     rent: mark.info.rent,
@@ -75,7 +73,3 @@ var map = (function(){
         initMap: initMap 
     }
 }());
-
-$(document).ready(function(){
-    map.initMap(); 
-});

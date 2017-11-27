@@ -1,13 +1,18 @@
 <head>
-    <script src="/javascripts/map.js"></script> 
-<script async defer 
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFIklLWIVn9fal8b7hHmiMZln8tY4W8ig"></script>
-</head>
 
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFIklLWIVn9fal8b7hHmiMZln8tY4W8ig"></script>
+<script src="/javascripts/map.js"></script> 
+</head>
 <link rel='stylesheet' href='/stylesheets/map.css' />
 <div class="jumbotron">
     <h1>Search For Homes</h1>
 </div>
-
     <div id="map" style="position:relative">
-    </div>
+</div>
+<script>
+    $(document).ready(function(){
+    map.initMap();
+    user.init_user_page();
+});
+</script>
