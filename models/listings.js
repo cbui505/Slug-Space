@@ -29,6 +29,7 @@ exports.getUserListings = function(cb){
         listingsArray.push(elementVal);
     });
     //pass listings along to cb function to avoid asynchronous bugs
+    console.log(listingsArray);
     cb(listingsArray);
     
   });

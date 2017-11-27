@@ -43,9 +43,16 @@ var map = (function(){
             markers.forEach(function(mark){
                 context = {
                     address:mark.info.address,
-                    rent: mark.info.rent,
+                    baths: mark.info.baths,
+                    beds: mark.info.beds,
+                    bus_time: mark.info.bus_time,
                     deposit: mark.info.deposit,
-                    description: mark.info.description
+                    description: mark.info.description,
+                    distance: mark.info.distance,
+                    email: mark.info.email,
+                    fee: mark.info.fee,
+                    file: mark.info.file,
+                    rent: mark.info.rent
                 };
                 var marker_info = utils.renderTemplate(template,context);
                 var info_window = new google.maps.InfoWindow({
