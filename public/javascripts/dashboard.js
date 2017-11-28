@@ -1,12 +1,8 @@
 var dashboard = (function(){
         var user_email = null;
-
         function initDashboard() {
           console.log("Made it to init boi");
-          observeUserLoginState()
-          .then(getUserListings)
-          .then(processListings)
-          .then(renderListingsTemplate);
+          observeUserLoginState();
         }
         function processListings(allListings){
             console.log("The listings are",allListings);
@@ -16,13 +12,19 @@ var dashboard = (function(){
             });
             return markers;
           }
-        function getUserListings(user_email){
+        function getUserListings(){
+            observeUserLoginState();
+
             var url = window.location.href + '/allListings';
+            var temp = {};
+            temp.email = user_email;
+            console.log("your email is", user_email);
             console.log('url:', url);
             return $.ajax({
                 url: url,
                 method: 'GET',
-                dataType: 'json'
+                dataType: 'json',
+                data: temp
             });
         }
         function getListingTemplate(){
@@ -62,6 +64,9 @@ var dashboard = (function(){
             }else{
                 console.log("User is logged in:", user.email);
                 user_email = user.email;
+                getUserListings()
+                .then(processListings)
+                .then(renderListingsTemplate);
             }
         });
     }

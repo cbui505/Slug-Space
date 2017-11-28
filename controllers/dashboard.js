@@ -21,8 +21,9 @@ router.get('/allListings', function (req, res, next) {
             console.error("listings is undefined");
         }
     }
+    var email = req.body.email;
     console.log('this get doesnt suck');
-    listings.getUserListings(sendListings);
+    listings.getMyListings(sendListings, email);
 });
 
 module.exports = router;
