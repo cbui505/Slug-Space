@@ -14,6 +14,10 @@ function getListings(cb){
     db.getUserListings(cb);
 }
 
+function getMyListings(cb, email){
+    db.getMyListings(cb, email);
+}
+
 /* Export functions for use in other parts of app */
 module.exports = {
     sendListing: function(listing){
@@ -21,5 +25,8 @@ module.exports = {
     },
     getListings: function(cb){
         getListings(cb);
+    },
+    getMyListings: function(cb, email){
+        getMyListings(cb, email);
     }
 }

@@ -1,8 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var listings = require('../models/listings.js');
+var app = require('../app.js');
+
+var user = app.get('currentUser');
+var loginState = app.get('login');
 router.get('/',function(req,res,next){
-    res.render('search');
+    var loginState = app.get('login');
+    if(!loginState){
+        res.redirect("../login");
+    }
+    res.render('search',{'login':loginState});
 });
 
 router.get('/allListings',function(req,res,next){

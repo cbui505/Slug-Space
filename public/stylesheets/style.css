@@ -78,7 +78,7 @@ header h1 {
 }
 
 #map {
-    min-height: 600px;
+    height: 500px;
     width: auto;
     margin-top: 40px;
     margin-bottom: 20px;
@@ -128,6 +128,16 @@ header h1 {
     padding: 10px;
     margin: auto;
     border: 3px solid #444;
+    border: 2px solid #444;
+}
+
+.btns {
+    margin-left: 190px;
+    margin-top: 10px;
+}
+
+#reset {
+    align-items: center;
 }
 
 input[type=text],
