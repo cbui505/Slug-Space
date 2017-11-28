@@ -4,15 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var hbs = require('hbs');
+var app = module.exports = express();
 var controllers = require('./controllers/index.js');
 
-
-var app = express();
-
-
 // view engine setup
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+app.set('currentUser',undefined);
+app.set('login',false); 
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -50,4 +53,3 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;

@@ -159,3 +159,7 @@ button {
     font-size: 20px;
     cursor: pointer;
 }
+
+.error {
+    color: red;
+}

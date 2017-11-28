@@ -16,7 +16,6 @@ var map = (function(){
         allListings.forEach(function(listing){
             
             var position = {lat:listing['lat']*1,lng: listing['long']*1};
-            console.log(position);
             var mark = setMarker(position);
             delete listing.lat;
             delete listing.long; 
@@ -42,12 +41,18 @@ var map = (function(){
     function renderMarkerWindowTemplates(markers){
         getMarkerTemplate().then(function(template){
             markers.forEach(function(mark){
-                console.log(template);
                 context = {
                     address:mark.info.address,
-                    rent: mark.info.rent,
+                    baths: mark.info.baths,
+                    beds: mark.info.beds,
+                    bus_time: mark.info.bus_time,
                     deposit: mark.info.deposit,
-                    description: mark.info.description
+                    description: mark.info.description,
+                    distance: mark.info.distance,
+                    email: mark.info.email,
+                    fee: mark.info.fee,
+                    file: mark.info.file,
+                    rent: mark.info.rent
                 };
                 var marker_info = utils.renderTemplate(template,context);
                 var info_window = new google.maps.InfoWindow({
@@ -75,7 +80,3 @@ var map = (function(){
         initMap: initMap 
     }
 }());
-
-$(document).ready(function(){
-    map.initMap(); 
-});

@@ -25,21 +25,28 @@ function handleError(error){
   console.error(error.message); 
 }
 function handleLogin(username,password,cb){
+  var currentUser;
   firebase.auth()
   .signInWithEmailAndPassword(username,password).
   then(function(userInfo){
-    createCustomToken(userInfo,cb);
+    currentUser = firebase.auth().currentUser;
+    cb(userInfo);
   })
   .catch(handleError);
-}
-function createCustomToken(userInfo,cb){
-  admin.auth().createCustomToken(userInfo.uid)
-  .then(cb)
-  .catch(handleError);
+  
+  console.log(currentUser);
 }
 
 module.exports = {
     loginUser: function(username,password,cb){
-      handleLogin(username,password,cb);      
+      handleLogin(username,password,cb);  
+          
+    },
+    verifyUser: function(token,cb){
+      admin.auth().verifyIdToken(token).then(cb)
+      .catch(handleError);
+    },
+    signOut: function(){
+      firebase.auth().signOut();
     }
   }

@@ -1,29 +1,25 @@
+<script src='/javascripts/login.js'></script>
 <div class="container">
     <h1>Login</h1>
-
     <div class="login_inner">
-    <form>
-    <label>Username</label>
-    <br>
-    <input id='username' type='text' placeholder='Enter Username'>
-    <br>
-    <label>Password</label>
-    <br>
-    <input id='password' type="password" placeholder="Enter Password" name="psw" required>
-    <br>
-    <div class="btns">
-    <button id='login'>Login</button>
-    <br>
+        <form>
+            <div class="form-group">
+                <label for="username">Email address</label>
+                <input type="email" class="form-control" id='username' aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+                <span class="error"></span>
+            </div>
+            <button type="submit"id="login" class="btn btn-primary">Login</button>
+            <a href="../login/signUp" class="btn btn-primary">sign up</a>
+        </form>
     </div>
-    <div style="float: center; margin-left: 53%">
-        <a href="/reset">Forgot Password?</a>
-        <br>
-        <b>Not Registered?</b> <a href="/signup">Sign Up</a>
-    </div>  
-    </div>
-</form>
 </div>
-<script src='/javascripts/login.js'></script>
+
 <script>
     $(document).ready(function(){
         user.init(); 

@@ -1,12 +1,14 @@
 <head>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFIklLWIVn9fal8b7hHmiMZln8tY4W8ig"></script>
+
+
 <script src='/javascripts/createListing.js'></script>
 <script>
-        //run init function at beginning to check if user is logged in
-
-        $(document).ready(function(){
+    //run init function at beginning to check if user is logged in
+    $(document).ready(function(){
         createListing.init(); 
+        user.init_user_page();
     });
 </script>
 
@@ -31,10 +33,29 @@
     <br>
     <input id='fee' type="number" placeholder="$0" name="fee">
     <br><br>
+
+    <label>Number of bedrooms</label>
+    <br>
+    <input id='beds' type="number" placeholder="0" name="beds">
+    <br><br>
+
+    <label>Number of bathrooms</label>
+    <br>
+    <input id='baths' type="number" placeholder="0" name="baths">
+    <br><br>
+
+    <label>Max number of tenants</label>
+    <br>
+    <input id='tenants' type="number" placeholder="1" name="tenants">
+    <br><br>
+
     <label>Property Description</label>
     <br><br>
     <textarea id="description" name="paragraph_text" cols="40" rows="4"></textarea>
-
+    <br><br>
+    
+    <label>Upload Cover picture</label>
+    <input type="file" id="pic" accept="image/*">
     <br><br>
     <button id='createButton'>Create</button>
     <button id='getButton'>Check listings</button>
