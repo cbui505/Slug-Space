@@ -12,6 +12,7 @@ var createListing = (function() {
         //geocoder used later to parse coordinates as addresses
         geocoder = new google.maps.Geocoder();
 
+        //global variables that are initialized later on
         var file = null;
         var user_email = null;
 
@@ -80,98 +81,99 @@ var createListing = (function() {
 
             //debug
             console.log(listing);
+        }
+
+    /* calculates the time to get to UCSC via bus from address */
+    function getBusCommuteTime(listing) {
+        //set address and destination
+        var origin = listing.address + ", Santa Cruz, CA";
+        var destination = "University of California Santa Cruz, High St, Santa Cruz, CA";
+
+        //run callback after retreiving result of google API request
+        var callback = function(data) {
+            console.log("Distance matrix returned: ", data);
+            listing.bus_time = data.rows[0].elements[0].duration.text;
+            listing.distance = data.rows[0].elements[0].distance.text;
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (!user) {
+                    listing.email = null;
+                } else {
+                    listing.email = user.email;
+                    postListingInfo(listing, "sendListing");
+                }
+            });
+        }
+        //make the request to Distance Matrix API to get time/distance
+        var googleDM = new google.maps.DistanceMatrixService();
+        googleDM.getDistanceMatrix({
+            origins: [origin],
+            destinations: [destination],
+            travelMode: 'TRANSIT',
+            unitSystem: google.maps.UnitSystem.IMPERIAL
+        }, callback);
+        //callback is run after getting response from API
+    }
+
+    /* For debug purposes: on press, returns all listings belonging to current user */
+    function bindCheckButton() {
+        $('#getButton').on('click', function(e) {
+            e.preventDefault();
+            var temp = {};
+            temp.email = user_email;
+            postListingInfo(temp, "getMyListings");
         })
-}
+    }
 
-/* calculates the time to get to UCSC via bus from address */
-function getBusCommuteTime(listing) {
-    //set address and destination
-    var origin = listing.address + ", Santa Cruz, CA";
-    var destination = "University of California Santa Cruz, High St, Santa Cruz, CA";
+    /* Post data to designated url*/
+    function postListingInfo(data, link) {
+        //set url to post
+        url = window.location.origin + '/createListing/' + link;
+        return $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            dataType: 'json'
+        });
+    }
 
-    var callback = function(data) {
-        console.log("Distance matrix returned: ", data);
-        listing.bus_time = data.rows[0].elements[0].duration.text;
-        listing.distance = data.rows[0].elements[0].distance.text;
+    /* Upload the picture to firebase's storage space, set file field for listing in db */
+    uploadPicture = function(file, cb, listing) {
+        //get reference to firebase storage
+        var storageRef = firebase.storage().ref();
+        console.log("got to storageref, file is ", file); //debug
+        //upload file if it is provided by user
+        if (file) {
+            //storing the file using the file name as a child/key in storage space
+            storageRef.child(file.name).put(file).then(function(snapshot) {
+                console.log('Uploaded', snapshot.totalBytes, 'bytes.'); //debug
+                var url = snapshot.downloadURL;
+                console.log('File available at', url);
+                listing.file = url;
+                //run cb function to post listing with updated file
+                cb(listing);
+            }).catch(function(error) {
+                //handle upload error
+                console.log('Upload failed:', error);
+                listing.file = null;
+            });
+        }
+        //run cb function on listing, will set file to null
+        else cb(listing);
+    }
+
+    /* Check for changes in user's login session */
+    function observeUserLoginState() {
+        //check for change in login state. Set user_email to whoever is logged in
         firebase.auth().onAuthStateChanged(function(user) {
             if (!user) {
-                listing.email = null;
+                user_email = null;
+                window.location = window.location.origin + '/login';
             } else {
-                listing.email = user.email;
-                postListingInfo(listing, "sendListing");
+                console.log("User is logged in:", user.email);
+                user_email = user.email;
             }
         });
     }
-
-    var googleDM = new google.maps.DistanceMatrixService();
-    googleDM.getDistanceMatrix({
-        origins: [origin],
-        destinations: [destination],
-        travelMode: 'TRANSIT',
-        unitSystem: google.maps.UnitSystem.IMPERIAL
-    }, callback);
-}
-
-/* handles check button press: will delete this function along with button later on */
-function bindCheckButton() {
-    $('#getButton').on('click', function(e) {
-        e.preventDefault();
-        var temp = {};
-        temp.email = user_email;
-        postListingInfo(temp, "getMyListings");
-    })
-}
-
-/* Post data to designated url*/
-function postListingInfo(data, link) {
-    //set url to post
-    url = window.location.origin + '/createListing/' + link;
-    return $.ajax({
-        url: url,
-        method: 'POST',
-        data: data,
-        dataType: 'json'
-    });
-}
-
-/* Upload the picture to firebase's storage space, set file field for listing in db */
-uploadPicture = function(file, cb, listing) {
-    //get reference to firebase storage
-    var storageRef = firebase.storage().ref();
-    console.log("got to storageref, file is ", file); //debug
-    //upload file if it is provided by user
-    if (file) {
-        //storing the file using the file name as a child/key in storage space
-        storageRef.child(file.name).put(file).then(function(snapshot) {
-            console.log('Uploaded', snapshot.totalBytes, 'bytes.'); //debug
-            var url = snapshot.downloadURL;
-            console.log('File available at', url);
-            listing.file = url;
-            //run cb function to post listing with updated file
-            cb(listing);
-        }).catch(function(error) {
-            //handle upload error
-            console.log('Upload failed:', error);
-            listing.file = null;
-        });
-    }
-    //run cb function on listing, will set file to null
-    else cb(listing);
-}
-
-/* Check for changes in user's login session */
-function observeUserLoginState() {
-    var currentUser;
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (!user) {
-            user_email = null;
-            window.location = window.location.origin + '/login';
-        } else {
-            console.log("User is logged in:", user.email);
-            user_email = user.email;
-        }
-    });
-}
 
 return {
     init: init
