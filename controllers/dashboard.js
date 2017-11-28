@@ -10,19 +10,19 @@ router.get('/', function (req, res, next) {
     if(!loginState){
         res.redirect("../login");
     }
-    res.render('dashboard',{'login':loginState});
+    res.render('dashboard');
 });
 
-router.get('/allListings', function (req, res, next) {
+router.post('/allListings', function (req, res, next) {
     var sendListings = function (allListings) {
         if (allListings) {
             res.send(allListings);
         } else {
             console.error("listings is undefined");
-        }
+        }   
     }
     var email = req.body.email;
-    console.log('this get doesnt suck');
+    console.log('this get doesnt suck and email = ', email);
     listings.getMyListings(sendListings, email);
 });
 

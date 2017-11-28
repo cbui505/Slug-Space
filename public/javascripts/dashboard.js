@@ -1,9 +1,11 @@
 var dashboard = (function(){
-        var user_email = null;
         function initDashboard() {
           console.log("Made it to init boi");
           observeUserLoginState();
         }
+
+        var user_email = null;
+
         function processListings(allListings){
             console.log("The listings are",allListings);
             markers = [];
@@ -13,8 +15,6 @@ var dashboard = (function(){
             return markers;
           }
         function getUserListings(){
-            observeUserLoginState();
-
             var url = window.location.href + '/allListings';
             var temp = {};
             temp.email = user_email;
@@ -22,9 +22,9 @@ var dashboard = (function(){
             console.log('url:', url);
             return $.ajax({
                 url: url,
-                method: 'GET',
-                dataType: 'json',
-                data: temp
+                method: 'POST',
+                data: temp,                
+                dataType: 'json'
             });
         }
         function getListingTemplate(){
@@ -77,8 +77,3 @@ var dashboard = (function(){
             initDashboard: initDashboard
         }
     }());
-    
-    $(document).ready(function(){
-        dashboard.initDashboard(); 
-    });
-    
