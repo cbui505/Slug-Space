@@ -40,7 +40,7 @@ router.post('/getListing',function(req,res,next){
 /* Go to middleware and request listings associated with current user (pass along) */
 router.post('/getMyListings',function(req,res,next){
     //debug
-    console.log("on route to getting those listings");
+    console.log("on route to getting listings of signed in user");
     var email = req.body.email;
     console.log("email is", email);
     //our callback function

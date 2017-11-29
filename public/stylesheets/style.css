@@ -1,11 +1,284 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-.error{
-  color:red; 
-}
+    body {
+        background-color: #ffffff;
+        color: #777;
+        font: normal 15px "Roboto", Helvetica Neue, Arial, Helvetica, sans-serif;
+    }
+    
+    p {
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+    
+    header {
+        height: 135px;
+        width: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 0.5cm;
+    }
+    
+    header h1 {
+        height: auto;
+        width: auto;
+        float: left;
+        padding-left: 10px;
+        color: #444;
+        font-weight: 50;
+        font-size: 65px;
+        margin: 0px;
+        position: absolute;
+    }
+    
+    .home {
+        height: auto;
+        width: auto;
+        position: absolute;
+        top: 180px;
+        left: 10px;
+    }
+    
+    .home ul li {
+        display: inline-block;
+    }
+    
+    .home .button {
+        color: #444;
+        width: 100%;
+        background-color: clear;
+        border: 1px solid #444;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        border-radius: 15;
+        font-weight: 100;
+        font-size: 20px;
+    }
+    
+    #map {
+        min-height: 600px;
+        width: auto;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        margin-left: 50px;
+        margin-right: 50px;
+        border: 2px solid #444;
+    }
+    
+    .button:hover {
+        background-color: #555555;
+        color: white;
+    }
+    /*LOGIN/SIGNUP*/
+    
+    .container {
+        width: 60%;
+        height: 500px;
+        padding: 10px;
+        margin: auto;
+    }
+    
+    .container h1 {
+        float: center;
+        margin-left: 30%;
+        font-weight: 50;
+    }
+    
+    .container a {
+        font-family: "Roboto" sans-serif;
+        color: #444;
+        text-decoration: none;
+    }
+    
+    .login_inner {
+        width: 40%;
+        height: 300px;
+        padding: 10px;
+        margin: auto;
+        border: 3px solid #444;
+    }
+    
+    .signup_inner {
+        width: 40%;
+        height: 350px;
+        padding: 10px;
+        margin: auto;
+        border: 3px solid #444;
+        border: 2px solid #444;
+    }
+    
+    input[type=email],
+    input[type=password],
+    input[type=re-password] {
+        outline: 0;
+        background: #f2f2f2;
+        width: 95%;
+        border: 0;
+        margin: 0 0 5px;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
+    #login,
+    #signUp {
+        text-transform: uppercase;
+        width: 50%;
+        margin-left: 45%;
+        margin-top: 10px;
+    }
+    
+    .link {
+        font-weight: 40;
+        font-size: 12px;
+        float: center;
+        margin-left: 45%;
+        margin-top: 3%;
+    }
+    
+    button {
+        color: #444;
+        background-color: clear;
+        border: 1px solid #444;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        border-radius: 20;
+        font-weight: 100;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #555555;
+        color: white;
+    }
+    /*CREATE LISTINGS*/
+    
+    .createListings_container {
+        width: 60%;
+        height: 1000px;
+        padding: 10px;
+        margin: auto;
+    }
+    
+    .createListings_container h1 {
+        float: center;
+        margin-left: 17%;
+        font-weight: 50;
+    }
+    
+    .createListings_container a {
+        font-family: "Roboto" sans-serif;
+        color: #444;
+        text-decoration: none;
+    }
+    
+    .createListings_inner {
+        width: 65%;
+        height: 910px;
+        padding: 10px;
+        margin: auto;
+        border: 3px solid #444;
+    }
+    
+    #address,
+    #description,
+    input[type=number] {
+        outline: 0;
+        background: #f2f2f2;
+        width: 85%;
+        border: 0;
+        margin: 0 0 5px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    input[type=number] {
+        width: 60%;
+    }
+    
+    .createListings_button {
+        margin-right: 50px;
+        margin-top: 10px;
+    }
+    
+    #createButton,
+    #getButton {
+        width: 50%;
+        margin-left: 45%;
+        text-transform: uppercase;
+    }
+    /*SEARCH*/
+    
+    .search header {
+        height: 50px;
+        width: auto;
+    }
+    
+    .search h1 {
+        float: center;
+        font-weight: 50;
+        font-size: 50px;
+        position: absolute;
+    }
+    
+    .mapSearch #map {
+        border: 3px solid #444;
+    }
+    /*MARKERBOX*/
+    
+    #content {
+        height: auto;
+        border: 1px solid #444;
+        margin: 3px;
+        padding: 5px;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    /*ABOUT*/
+    
+    #about {
+        min-height: 600px;
+        width: auto;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        margin-left: 50px;
+        margin-right: 50px;
+        border: 2px solid #444;
+    }
+    
+    #about h1 {
+        float: center;
+        padding-top: 30px;
+        font-weight: 100;
+        color: #444;
+        font-size: 50px;
+    }
+    /*NAVBAR*/
+    
+    .navbar-brand {
+        font-weight: 100;
+    }
+    
+    .navbar-nav {
+        height: auto;
+        width: auto;
+        position: absolute;
+        top: 3px;
+        right: 15px;
+    }
+    
+    .navbar-nav ul li {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+    }
+    
+    .navbar-nav a {
+        color: #444;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: 30px;
+    }

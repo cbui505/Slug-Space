@@ -1,8 +1,5 @@
 <head>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFIklLWIVn9fal8b7hHmiMZln8tY4W8ig"></script>
-
-
 <script src='/javascripts/createListing.js'></script>
 <script>
     //run init function at beginning to check if user is logged in
@@ -11,11 +8,11 @@
         user.init_user_page();
     });
 </script>
-
 </head>
 
-
+<div class="createListings_container">
 <h1>New Listing</h1>
+<div class="createListings_inner">
 <form>
     <label>Property Address*</label>
     <br>
@@ -50,14 +47,15 @@
     <br><br>
 
     <label>Property Description</label>
-    <br><br>
+    <br>
     <textarea id="description" name="paragraph_text" cols="40" rows="4"></textarea>
-    <br><br>
-    
-    <label>Upload Cover picture</label>
-    <input type="file" id="pic" accept="image/*">
-    <br><br>
-    <button id='createButton'>Create</button>
-    <button id='getButton'>Check listings</button>
 
+    <br>
+    <div class="createListings_button">
+    <button id='createButton'><b>Create</b></button>
+    <br><br>
+    <button id='getButton'>Check listings</button>
+    </div>
 </form>
+</div>
+</div>

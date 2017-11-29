@@ -1,19 +1,26 @@
-<h1>Login</h1>
-<form>
-  <div class="form-group">
-    <label for="username">Email address</label>
-    <input type="email" class="form-control" id='username' aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    <span class="error"></span>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Password">
-    <span class="error"></span>
-  </div>
-  <button type="submit"id="login" class="btn btn-primary">Login</button>
-  <a href="../login/signUp" class="btn btn-primary">sign up</a>
-</form>
+<script src='/javascripts/login.js'></script>
+<div class="container">
+    <h1>Login</h1>
+
+    <div class="login_inner">
+        <form>
+            <div class="form-group">
+                <label for="username">Email address</label>
+                <input type="email" class="form-control" id='username' aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <span class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+                <span class="error"></span>
+            </div>
+            <button type="submit"id="login">Login</button>
+            <div class=link><b>Not yet Registered? </b><a href="../login/signUp" class="signup">Create an Account</a></div>
+        </form>
+    </div>
+</div>
+
 <script>
     $(document).ready(function(){
         user.init(); 
