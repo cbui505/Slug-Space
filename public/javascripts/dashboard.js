@@ -1,13 +1,12 @@
 var dashboard = (function(){
         function initDashboard() {
-          console.log("Made it to init boi");
           observeUserLoginState();
         }
 
         var user_email = null;
 
         function processListings(allListings){
-            console.log("The listings are",allListings);
+            console.log("The listings are", allListings);
             markers = [];
             allListings.forEach(function(listing){
                 markers.push({info: listing});
@@ -18,8 +17,6 @@ var dashboard = (function(){
             var url = window.location.href + '/allListings';
             var temp = {};
             temp.email = user_email;
-            console.log("your email is", user_email);
-            console.log('url:', url);
             return $.ajax({
                 url: url,
                 method: 'POST',
@@ -28,33 +25,37 @@ var dashboard = (function(){
             });
         }
         function getListingTemplate(){
-            console.log("hello");
             var url = window.location.origin + '/views/partials/listing.hbs';
-            console.log('url is : ', url); 
             return $.ajax({
                 url:url,
                 method:'GET',
             });
         }
         function renderListingsTemplate(markers){
-            console.log("hello1");
             getListingTemplate().then(function(template){
+                console.log('markers is = ', markers);
+                var count = 0;
                 markers.forEach(function(mark){
-                    console.log('markers is = ', markers);
+                    console.log('count = ', count);
                     context = {
-                        address:mark.info.address,
+                        address: mark.info.address,
                         rent: mark.info.rent,
                         deposit: mark.info.deposit,
-                        description: mark.info.description
+                        description: mark.info.description,
+                        baths: mark.info.baths,
+                        beds: mark.info.beds,
+                        bus_time: mark.info.bus_time,
+                        fee: mark.info.fee,
+                        tenants: mark.info.tenants
                     };
-                    console.log('made it here and template = ', template);
                     console.log('context = ', context);
-                    var marker_info = utils.renderTemplate(template,context);
+                    var templateScript = Handlebars.compile(template);
+                    var html = templateScript(context);
+                     $(".list-group").append(html);                         
                 });
             });
         }
 
-              /* Check for changes in user's login session */
       function observeUserLoginState(){
         var currentUser;
         firebase.auth().onAuthStateChanged(function(user) {
