@@ -25,6 +25,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/views/partials/:name',function(req,res,next){
+  var path = __dirname + req.path;
+  console.log(path);
+  res.sendFile(__dirname + '/views/partials/' + req.params.name); 
+})
 app.get('/views/:name',function(req,res,next){
   var path = __dirname + req.path;
   console.log(path);

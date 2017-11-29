@@ -8,6 +8,6 @@ var utils = (function(){
         return html;
     }
     return {
-        renderTemplate: renderTemplate,
+        renderTemplate: renderTemplate
     };
 }());
