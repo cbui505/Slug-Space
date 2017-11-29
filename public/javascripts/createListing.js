@@ -7,6 +7,7 @@ var createListing = (function() {
             //check for press of the following buttons
             bindCreateButton();
             bindCheckButton();
+            bindUpload();
         }
 
         //geocoder used later to parse coordinates as addresses
@@ -121,6 +122,14 @@ var createListing = (function() {
             var temp = {};
             temp.email = user_email;
             postListingInfo(temp, "getMyListings");
+        })
+    }
+
+    /* gets file if user opts to click upload file button */
+    function bindUpload(){
+        $('#pic').on('change', function(event){
+            event.preventDefault();
+            file = event.target.files[0];
         })
     }
 
