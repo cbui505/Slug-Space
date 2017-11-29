@@ -83,10 +83,18 @@ var user = (function(){
         var currentUser;
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
+                //if user is signed in and they visit home page, direct to search
+                if(window.location == window.location.origin + "/"){
+                    window.location=window.location.origin + "/search";
+                }
+                //otherwise manage accordingly
                 currentUser = user;
                 postUserInfo(user);
             }else{
-                redirectToHomePage();
+                //if user isnt signed in, but theyre on home page, just show a blank map
+                if(window.location != window.location.origin + "/"){
+                    redirectToHomePage();
+                }
             }
         });
     }

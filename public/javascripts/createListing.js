@@ -7,6 +7,7 @@ var createListing = (function() {
             //check for press of the following buttons
             bindCreateButton();
             bindCheckButton();
+            bindUpload();
         }
 
         //geocoder used later to parse coordinates as addresses
@@ -34,23 +35,28 @@ var createListing = (function() {
                 var $baths = $('#baths');
                 var $tenants = $('#tenants');
 
+                var $start_date = $('#start_date');
+                var $lease_terms = $('#lease_terms');
+
                 //get values from user input fields and store inside listing object
                 listing = {};
                 //address and rent were required in hbs, will have a value
                 listing.address = $address.val();
                 listing.rent = $rent.val();
+                listing.beds = $beds.val();
+                listing.baths = $baths.val();
+                listing.tenants = $tenants.val();
 
                 //make sure user fills in required fields
-                if (!listing.address || !listing.rent) {
+                if (!listing.address || !listing.rent || !listing.beds || !listing.baths || !listing.tenants) {
                     alert("Please fill in all required fields");
                 } else {
                     //set default values if fields were left empty
                     listing.deposit = $deposit.val() ? $deposit.val() : 0;
                     listing.fee = $fee.val() ? $fee.val() : 0;
                     listing.description = $description.val() ? $description.val() : "No description provided";
-                    listing.beds = $beds.val() ? $beds.val() : 0;
-                    listing.baths = $baths.val() ? $baths.val() : 0;
-                    listing.tenants = $tenants.val() ? $tenants.val() : 1;
+                    listing.start_date = $start_date.val() ? $start_date.val() : "not specified";
+                    listing.lease_terms = $lease_terms.val();                  
 
                     //null if user does not upload file
                     listing.file = null;
@@ -121,6 +127,14 @@ var createListing = (function() {
             var temp = {};
             temp.email = user_email;
             postListingInfo(temp, "getMyListings");
+        })
+    }
+
+    /* gets file if user opts to click upload file button */
+    function bindUpload(){
+        $('#pic').on('change', function(event){
+            event.preventDefault();
+            file = event.target.files[0];
         })
     }
 

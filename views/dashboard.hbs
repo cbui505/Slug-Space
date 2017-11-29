@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li>
+                <a href="/search">Visit Map</a>
+            </li>
+            <li>
+                <a href="/createListing">Create Listing</a>
+            </li>
+            <li>
+                <a href="#">Manage Listings</a>
+            </li>
+            <li>
+                <a href="/everyListing">View All Listings</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+
+        <div class="col-sm-9 col-sm-offset-2">
+            <h1 class="page-header">Your Listings:</h1>
+            <div class="list-group">
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-2">
+            <h1 class="page-header">Listings You're Interested In:</h1>
+            <p>You have not shown interest in any listings.</p>
+            <a href="#">See all listings</a>
+        </div>
+    </div>
+</div>
+
+<script src='/javascripts/dashboard.js'></script>
+<script>
+    $(document).ready(function () {
+        dashboard.initDashboard();
+    });
+</script>
