@@ -137,7 +137,7 @@ var createListing = (function() {
     }
 
     /* Upload the picture to firebase's storage space, set file field for listing in db */
-    uploadPicture = function(file, cb, listing) {
+    function uploadPicture(file, cb, listing) {
         //get reference to firebase storage
         var storageRef = firebase.storage().ref();
         console.log("got to storageref, file is ", file); //debug

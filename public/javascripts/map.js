@@ -11,6 +11,12 @@ var map = (function(){
       .then(processListings)
       .then(renderMarkerWindowTemplates);
     }
+    function initAboutMap(){
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 36.9914, lng: -122.0609},
+            zoom: 13
+          });
+    }
     function processListings(allListings){
         markers = [];
         allListings.forEach(function(listing){

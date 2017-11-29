@@ -17,6 +17,7 @@ var user = (function(){
         if(!$username.val() || !$password.val()){
             console.log('failure');
             // write to the screen that an error has occured
+            $("#signUp").parent().find("span").text("passwords do not match");
         } else {
             var currentUser;
             firebase.auth().signInWithEmailAndPassword($username.val(),$password.val())
