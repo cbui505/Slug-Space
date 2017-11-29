@@ -13,42 +13,61 @@
 <div class="createListings_container">
 <h1>New Listing</h1>
 <div class="createListings_inner">
+    <h3 style="font-size: 10px">* Indicates a required field</h3>
 <form>
     <label>Property Address*</label>
     <br>
-    <input id='address' type='text' placeholder='Enter Address' required>
+    <input id='address' type='text' placeholder='Enter Address'>
     <br><br>
     <label>Rent (per month)*</label>
     <br>
-    <input id='rent' type="number" placeholder="Enter Rent ($)" name="rent" required>
+    <input id='rent' type="number" placeholder="Enter Rent ($)" name="rent">
     <br><br>
+
+    <label>Number of bedrooms*</label>
+    <br>
+    <input id='beds' type="number" name="beds">
+    <br><br>
+
+    <label>Number of bathrooms*</label>
+    <br>
+    <input id='baths' type="number" name="baths">
+    <br><br>
+
+    <label>Max number of tenants*</label>
+    <br>
+    <input id='tenants' type="number" name="tenants">
+    <br><br>
+
     <label>Deposit</label>
     <br>
     <input id='deposit' type="number" placeholder="$0" name="deposit">
     <br><br>
+
     <label>Application Fee</label>
     <br>
     <input id='fee' type="number" placeholder="$0" name="fee">
     <br><br>
 
-    <label>Number of bedrooms</label>
-    <br>
-    <input id='beds' type="number" placeholder="0" name="beds">
-    <br><br>
-
-    <label>Number of bathrooms</label>
-    <br>
-    <input id='baths' type="number" placeholder="0" name="baths">
-    <br><br>
-
-    <label>Max number of tenants</label>
-    <br>
-    <input id='tenants' type="number" placeholder="1" name="tenants">
-    <br><br>
-
     <label>Property Description</label>
     <br>
     <textarea id="description" name="paragraph_text" cols="40" rows="4"></textarea>
+
+    <br>
+    <label>Start Date</label>
+    <br>
+    <input id="start_date" type="date">
+
+    <br>
+    <label>Lease Terms</label>
+    <br>
+    <select id="lease_terms">
+        <option value="One year lease">One Year Lease</option>
+        <option value="School Year">School Year</option>
+        <option value="Month to Month">Month to Month</option>
+        <option value="Summer">Summer</option>
+    </select>
+    <br><br>
 
     <label>Upload Cover picture</label>
     <input type="file" id="pic" accept="image/*">
