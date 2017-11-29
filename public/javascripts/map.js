@@ -24,7 +24,7 @@ var map = (function(){
         return markers;
       }
     function getListings(){
-        var url = window.location.href + '/allListings';
+        var url = window.location.origin + '/search/allListings';
         return $.ajax({
             url: url,
             method: 'GET',
