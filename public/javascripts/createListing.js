@@ -126,7 +126,7 @@ var createListing = (function() {
             e.preventDefault();
             var temp = {};
             temp.email = user_email;
-            postListingInfo(temp, "showInterest");
+            postListingInfo(temp, "removeInterest");
         })
     }
 

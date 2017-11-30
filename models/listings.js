@@ -79,18 +79,74 @@ exports.setInterest = function(uid, listing){
 
   var slugDB = firebase.database();
   var ref = slugDB.ref('Users');
+  var parsed_uid = uid.replace(".", ",");
 
   //firebase doesnt let us store email as key, use uid instead
-  ref.child(uid).once('value')
+  ref.child(parsed_uid).once('value')
       //if uid exists, append to the string of interests
       .then(function(snapshot){
           var interest = snapshot.val();
-          interest += ", " + listing;
+          interest += ",,," + listing;
           console.log("new interest is ", interest);
-          ref.child(uid).set(interest);
+          ref.child(parsed_uid).set(interest);
       })
       //otherwise create the uid in db and set the first interest
       .catch(function(){
-          ref.child(uid).set(listing);
+          ref.child(parsed_uid).set(listing);
       });
+}
+
+/* get the user's interested listings and return it as an array */
+//Note that uid referes to email of current user
+exports.getInterests = function(uid, cb){
+  getInterests(uid, cb);
+}
+
+getInterests = function(uid, cb){
+  var slugDB = firebase.database();
+  var ref = slugDB.ref('Users');
+  var interests = [];
+  
+  //firebase doesnt allow storing email as key due to '.' so replace '.' with ','
+  var parsed_uid = uid.replace(".", ",")
+
+  ref.child(parsed_uid).once('value')
+      //try to get the user's interests if any
+      .then(function(snapshot){
+        var interest_string = snapshot.val();
+        interests = interest_string.split(",,,");
+        cb(interests);
+      })
+      //if there are none, return null
+      .catch(function(error){
+        console.log("User "+uid+ " is not in db... ERROR: "+error);
+        cb(null);
+      })
+}
+
+/* remove the specified listing from given user's interested listings in db */
+exports.removeInterest = function(uid, listing){
+  var slugDB = firebase.database();
+  var ref = slugDB.ref('Users');
+  var parsed_uid = uid.replace(".", ",");
+
+  //callback function to run after getting user's interested listings
+  var deleteInterest = function(interests){
+      //iterate through interests and delete if we find it
+      for(var i=0; i<interests.length; i++){
+        if(interests[i] == listing){
+          console.log("deleted interest: ", interests[i]);
+          interests.splice(i, 1);
+          break;
+        }
+      }
+      
+      //update user's interests in database
+      var updatedInterests = interests.join(",,,");
+      console.log("Interests for " + parsed_uid + " are now ", updatedInterests);
+      ref.child(parsed_uid).set(updatedInterests);
+  };
+
+  //fetch all user interests and then run the above callback
+  getInterests(uid, deleteInterest);
 }

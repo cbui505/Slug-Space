@@ -22,6 +22,14 @@ function setInterest(uid, listing){
     db.setInterest(uid, listing);
 }
 
+function getInterest(uid, cb){
+    db.getInterests(uid, cb);
+}
+
+function removeInterest(uid, listing){
+    db.removeInterest(uid, listing);
+}
+
 /* Export functions for use in other parts of app */
 module.exports = {
     sendListing: function(listing){
@@ -35,5 +43,11 @@ module.exports = {
     },
     setInterest: function(uid, listing){
         setInterest(uid, listing);
+    },
+    getInterest: function(uid, cb){
+        getInterest(uid, cb);
+    },
+    removeInterest: function(uid, listing){
+        removeInterest(uid, listing);
     }
 }

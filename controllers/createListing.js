@@ -56,13 +56,33 @@ router.post('/showInterest',function(req,res,next){
     console.log("uid is ", user);
     //var uid = user.uid;
     /* user id isnt the number from the db?
-       Need this to store interests, since email @ symbol cant be stored
-       Otherwise: Switch @ with , and handle key processing in db function
+       Need this to store interests, since email . symbol cant be stored
+       Otherwise: Replace . with , and handle key processing in db function
     */
     //dummy data
-    var uid = "chris";
+    var uid = user.email;
     var listing = "125 bixby st";
     create.setInterest(uid, listing);
+});
+
+router.post('/getInterest',function(req,res,next){
+    var user = app.get('currentUser');
+    //dummy data
+    var uid = user.email;
+    var cb = function(interests){
+        if(interests) console.log("Your interested listings: ", interests);
+        else console.log("You have no listings of interest");
+    };
+    create.getInterest(uid, cb);
+});
+
+
+router.post('/removeInterest',function(req,res,next){
+    var user = app.get('currentUser');
+    //dummy data
+    var uid = user.email;
+    var listing = "target";
+    create.removeInterest(uid, listing);
 });
 
 module.exports = router; 
