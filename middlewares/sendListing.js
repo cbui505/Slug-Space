@@ -18,6 +18,10 @@ function getMyListings(cb, email){
     db.getMyListings(cb, email);
 }
 
+function setInterest(uid, listing){
+    db.setInterest(uid, listing);
+}
+
 /* Export functions for use in other parts of app */
 module.exports = {
     sendListing: function(listing){
@@ -28,5 +32,8 @@ module.exports = {
     },
     getMyListings: function(cb, email){
         getMyListings(cb, email);
+    },
+    setInterest: function(uid, listing){
+        setInterest(uid, listing);
     }
 }

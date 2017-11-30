@@ -51,5 +51,19 @@ router.post('/getMyListings',function(req,res,next){
     create.getMyListings(allListings, email);
 });
 
+router.post('/showInterest',function(req,res,next){
+    var user = app.get('currentUser');
+    console.log("uid is ", user);
+    //var uid = user.uid;
+    /* user id isnt the number from the db?
+       Need this to store interests, since email @ symbol cant be stored
+       Otherwise: Switch @ with , and handle key processing in db function
+    */
+    //dummy data
+    var uid = "chris";
+    var listing = "125 bixby st";
+    create.setInterest(uid, listing);
+});
+
 module.exports = router; 
 
