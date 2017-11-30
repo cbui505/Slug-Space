@@ -155,7 +155,7 @@
     
     .createListings_container {
         width: 60%;
-        height: 1000px;
+        height: 1020px;
         padding: 10px;
         margin: auto;
     }
@@ -197,14 +197,14 @@
     }
     
     .createListings_button {
-        margin-right: 50px;
-        margin-top: 10px;
+        margin-top: 5px;
+        margin-right: 50;
     }
     
     #createButton,
     #getButton {
         width: 50%;
-        margin-left: 45%;
+        margin-left: 48%;
         text-transform: uppercase;
     }
     /*SEARCH*/
@@ -216,8 +216,8 @@
     
     .search h1 {
         float: center;
-        font-weight: 50;
-        font-size: 50px;
+        font-weight: 100;
+        font-size: 60px;
         position: absolute;
     }
     
@@ -228,7 +228,6 @@
     
     #content {
         height: auto;
-        border: 1px solid #444;
         margin: 3px;
         padding: 5px;
     }
@@ -238,6 +237,23 @@
     }
     /*ABOUT*/
     
+    #about h2 {
+        font-weight: 100;
+        font-size: 30px;
+    }
+    
+    #about h3 {
+        font-weight: 100;
+        font-size: 15px;
+        margin-top: 5px;
+    }
+    
+    #about p {
+        font-weight: 100;
+        font-size: 20px;
+        margin-top: 5px;
+    }
+    
     #about {
         min-height: 600px;
         width: auto;
@@ -245,6 +261,7 @@
         margin-bottom: 20px;
         margin-left: 50px;
         margin-right: 50px;
+        padding: 30px;
         border: 2px solid #444;
     }
     
