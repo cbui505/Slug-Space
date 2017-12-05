@@ -9,7 +9,8 @@ var map = (function(){
       });
       getListings()
       .then(processListings)
-      .then(renderMarkerWindowTemplates);
+      .then(renderMarkerWindowTemplates)
+      .then(bindShowInterest);
     }
     function initAboutMap(){
         map = new google.maps.Map(document.getElementById('map'), {
@@ -45,8 +46,14 @@ var map = (function(){
         });
     }
     function renderMarkerWindowTemplates(markers){
+        var d = $.Deferred();
         getMarkerTemplate().then(function(template){
             markers.forEach(function(mark){
+                var coord = {
+                    lat:mark.marker.getPosition().lat(), 
+                    lng: mark.marker.getPosition().lng()
+                }; 
+
                 context = {
                     address:mark.info.address,
                     baths: mark.info.baths,
@@ -58,17 +65,22 @@ var map = (function(){
                     email: mark.info.email,
                     fee: mark.info.fee,
                     file: mark.info.file,
-                    rent: mark.info.rent
+                    rent: mark.info.rent,
+                    coord: coord
                 };
                 var marker_info = utils.renderTemplate(template,context);
                 var info_window = new google.maps.InfoWindow({
                     content: marker_info
                 });
                 mark.marker.addListener('click',function(){
-                    info_window.open(map,mark.marker); 
+                    info_window.open(map,mark.marker);
+                    bindShowInterest();
                 });
             });
+        }).then(function(){
+            d.resolve();
         });
+        return d; 
     }
     function setMarker(position){
         var marker;
@@ -79,6 +91,15 @@ var map = (function(){
             });
         }
         return marker;
+    }
+    function bindShowInterest(){
+        console.log($(".test"));
+        $(".test").unbind("change.marker").bind('change.marker',function(e){
+            e.preventDefault(); 
+            var $this = $(this);
+            var coord = {lat: $this.data('lat'), lng: $this.data('lng')};
+            
+        });
     }
     return {
         get map() {return map;},
