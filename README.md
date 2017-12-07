@@ -1,3 +1,6 @@
+<b>Web application is live<b>:
+https://whispering-reaches-57479.herokuapp.com/
+<br>
 <b>About</b>
 <br>
 Slug Space is an interface between students and landlords, helping to connect these individuals. The product provides a secure means to sign in and create new users through the use of Google FireBase. This service also powered the database, allowing for a reliable means to store user listings. There are also many features such as a real-time map of all of the listings, additional information about properties, and more!
